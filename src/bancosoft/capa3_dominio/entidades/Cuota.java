@@ -20,7 +20,10 @@ public class Cuota {
     private Date fechaPago;
     private String estado;
     private double seguro;
-    
+
+    public Cuota() {
+        estado = "PENDIENTE";
+    }
 
     public double getSeguro() {
         return seguro;
@@ -28,11 +31,6 @@ public class Cuota {
 
     public void setSeguro(double seguro) {
         this.seguro = seguro;
-    }
-    
-
-    public Cuota() {
-        estado = "PENDIENTE";
     }
 
     public int getCuotaid() {

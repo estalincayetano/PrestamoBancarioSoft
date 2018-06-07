@@ -40,10 +40,6 @@ public class Prestamo {
         return cliente;
     }
 
-    public void agregarCuota(Cuota cuota) {
-        listCuotas.add(cuota);
-    }
-
     public List<Cuota> getListCuotas() {
         return listCuotas;
     }
@@ -51,7 +47,6 @@ public class Prestamo {
     public void setListCuotas(List<Cuota> listCuotas) {
         this.listCuotas = listCuotas;
     }
-    
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
@@ -120,7 +115,12 @@ public class Prestamo {
     
      */
     /*Elimiar porcentaje*/
+    /*METODO PARA AGREGAR LAS CUOTAS DEL PRESTAMO*/
+    public void agregarCuota(Cuota cuota) {
+        listCuotas.add(cuota);
+    }
     /*Metodo para calcular la taza de interes diaria de la cuota*/
+
     public double calcularTazaDiaria() {
         double inte = interes / 100;
         float diasf = 1 / 360f;

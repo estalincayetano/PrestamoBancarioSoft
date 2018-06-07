@@ -25,5 +25,5 @@ public interface IClienteDAO {
     public Cliente buscarPorDNI(String dni) throws SQLException;
     
      public List<Cliente> buscar(String nombre) throws SQLException;
-     
+
 }
