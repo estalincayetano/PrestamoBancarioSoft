@@ -58,25 +58,6 @@ public class CuotaDAOPostgre implements ICuotaDAO {
     }
 
     @Override
-    public Cuota buscar(int id) throws SQLException {
-        Cuota cuota = null;
-        String sentenciaSQL = "select c.capital, c.interes, c.seguro, c.montocuota, c.fechapago "
-                + "from cuota as c "
-                + "where c.idcuota=" + id + "";
-        ResultSet resultado = gestorJDBC.ejecutarConsulta(sentenciaSQL);
-        while (resultado.next()) {
-            cuota = new Cuota();
-            cuota.setCapital_cuota(resultado.getDouble("capital"));
-            cuota.setInteres_cuota(resultado.getDouble("interes"));
-            cuota.setSeguro(resultado.getDouble("seguro"));
-            cuota.setMontoCuota(resultado.getDouble("montocuota"));
-            cuota.setFechaPago(resultado.getDate("fechapago"));
-        }
-        resultado.close();
-        return cuota;
-    }
-
-    @Override
     public int modificar(Cuota cuota) throws SQLException {
         String sentenciaSQL = "update cuota set estado = ? where idcuota = ?";
         PreparedStatement sentencia = gestorJDBC.prepararSentencia(sentenciaSQL);

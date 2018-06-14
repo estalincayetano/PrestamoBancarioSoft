@@ -48,12 +48,6 @@ public class RegistrarPagoServicio {
         return cuota;
     }
 
-    public Cuota buscarPorID(int idcuota) throws Exception {
-        gestorJDBC.abrirConexion();
-        Cuota cuota = cuotaDAO.buscar(idcuota);
-        gestorJDBC.cerrarConexion();
-        return cuota;
-    }
 
     public int registrarPago(Pago pago) throws Exception {
         gestorJDBC.abrirConexion();

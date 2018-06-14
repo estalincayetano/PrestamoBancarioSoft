@@ -104,25 +104,6 @@ public class ClienteDAOPostgre implements IClienteDAO {
         return cliente;
     }
 
-    @Override
-    public List<Cliente> buscar(String nombre) throws SQLException {
-        List<Cliente> clientes = new ArrayList<>();
-        Cliente cliente;
-        String sentenciaSQL = "SELECT dni, nombre, apellidos, direccion, edad, celular "
-                + "FROM cliente where nombre='" + nombre + "'";
-        ResultSet resultado = gestorJDBC.ejecutarConsulta(sentenciaSQL);
-        while (resultado.next()) {
-            cliente = new Cliente();
-            cliente.setDni(resultado.getString("dni"));
-            cliente.setNombre(resultado.getString("nombre"));
-            cliente.setApellido(resultado.getString("apellidos"));
-            cliente.setDireccion(resultado.getString("direccion"));
-            cliente.setEdad(resultado.getInt("edad"));
-            cliente.setCelular(resultado.getString("celular"));
-            clientes.add(cliente);
-        }
-        resultado.close();
-        return clientes;
-    }
-
+ 
+   
 }
