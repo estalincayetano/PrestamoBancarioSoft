@@ -81,13 +81,11 @@ public class PrestamoDAOPostgre implements IPrestamoDAO {
 
     }
 
-
     @Override
     public List<Prestamo> buscarPorEstado(String estado) throws SQLException {
         List<Prestamo> prestamos = new ArrayList<>();
         Prestamo prestamo;
         String sentenciaSQL = "select idprestamo,monto, interes, numerocuotas, fechainicio, estado "
-                /*from prestamo where estado='VIGENTE' */
                 + " from prestamo where estado like '%" + estado + "%'";
         ResultSet resultado = gestorJDBC.ejecutarConsulta(sentenciaSQL);
         while (resultado.next()) {
@@ -98,6 +96,28 @@ public class PrestamoDAOPostgre implements IPrestamoDAO {
             prestamo.setNumeroCuotas(resultado.getInt("numerocuotas"));
             prestamo.setFechaInicio(resultado.getDate("fechainicio"));
             prestamo.setEstado(resultado.getString("estado"));
+            prestamos.add(prestamo);
+        }
+        resultado.close();
+        return prestamos;
+    }
+
+    @Override
+    public List<Prestamo> buscarPrestamoCliente(String dni) throws SQLException {
+        List<Prestamo> prestamos = new ArrayList<>();
+        Prestamo prestamo;
+        String sentenciaSQL = "select p.idprestamo, p.numerocuotas, p.interes, p.fechainicio, P.monto "
+                + " from prestamo as p "
+                + "join cliente as c on p.idcliente=c.idcliente "
+                + "where dni='" + dni + "' and estado='VIGENTE' ";
+        ResultSet resultado = gestorJDBC.ejecutarConsulta(sentenciaSQL);
+        while (resultado.next()) {
+            prestamo = new Prestamo();
+            prestamo.setPrestamoid(resultado.getInt("idprestamo"));
+            prestamo.setNumeroCuotas(resultado.getInt("numerocuotas"));
+            prestamo.setInteres(resultado.getDouble("interes"));
+            prestamo.setFechaInicio(resultado.getDate("fechainicio"));
+            prestamo.setMonto(resultado.getDouble("monto"));
             prestamos.add(prestamo);
         }
         resultado.close();

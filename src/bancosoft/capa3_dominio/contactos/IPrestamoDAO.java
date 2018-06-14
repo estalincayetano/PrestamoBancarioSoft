@@ -5,7 +5,6 @@
  */
 package bancosoft.capa3_dominio.contactos;
 
-
 import bancosoft.capa3_dominio.entidades.Prestamo;
 import java.sql.SQLException;
 import java.util.List;
@@ -15,7 +14,10 @@ import java.util.List;
  * @author estal
  */
 public interface IPrestamoDAO {
-  public int ingresar(Prestamo prestamo) throws SQLException;
-  
-   public List<Prestamo> buscarPorEstado(String estado) throws SQLException;
+
+    public int ingresar(Prestamo prestamo) throws SQLException;
+
+    public List<Prestamo> buscarPorEstado(String estado) throws SQLException;
+
+    public List<Prestamo> buscarPrestamoCliente(String dni) throws SQLException;
 }

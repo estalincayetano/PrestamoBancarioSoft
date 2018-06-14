@@ -78,8 +78,6 @@ public class ClienteDAOPostgre implements IClienteDAO {
             cliente.setDireccion(resultado.getString("direccion"));
             cliente.setEdad(resultado.getInt("edad"));
             cliente.setCelular(resultado.getString("celular"));
-
-
         }
         resultado.close();
         return cliente;
@@ -100,7 +98,7 @@ public class ClienteDAOPostgre implements IClienteDAO {
             cliente.setDireccion(resultado.getString("direccion"));
             cliente.setEdad(resultado.getInt("edad"));
             cliente.setCelular(resultado.getString("celular"));
-            
+
         }
         resultado.close();
         return cliente;
@@ -111,7 +109,7 @@ public class ClienteDAOPostgre implements IClienteDAO {
         List<Cliente> clientes = new ArrayList<>();
         Cliente cliente;
         String sentenciaSQL = "SELECT dni, nombre, apellidos, direccion, edad, celular "
-                + "FROM cliente where nombre='"+nombre+"'";
+                + "FROM cliente where nombre='" + nombre + "'";
         ResultSet resultado = gestorJDBC.ejecutarConsulta(sentenciaSQL);
         while (resultado.next()) {
             cliente = new Cliente();

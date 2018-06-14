@@ -51,14 +51,14 @@ public class PagoTest {
     }
 
     /**
-     * Test of pago method, of class Pago.
+     * Test of pagoTotal method, of class Pago.
      */
     @Test
-    public void testPago() {
+    public void testPagoTotal() {
         System.out.println("pago");
         Pago instance = new Pago();
         double expResult = 0.0;
-        double result = instance.pago();
+        double result = instance.pagoTotal();
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

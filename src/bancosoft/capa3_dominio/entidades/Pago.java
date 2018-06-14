@@ -65,14 +65,14 @@ public class Pago {
     public double calcularMora() {
         double mora = 0;
         if (ValidarFechaPago() == true) {
-            mora = 50;
+            mora = 0.03*cuota.getMontoCuota();
         } else {
             mora = 0;
         }
         return mora;
     }
 
-    public double pago() {
+    public double pagoTotal() {
         double pago=0.0;
         pago = cuota.getMontoCuota() + calcularMora();
         return pago;

@@ -15,5 +15,10 @@ import java.util.List;
  */
 public interface ICuotaDAO {
 
-    public List<Cuota> buscar(String dni, int idprestamo, String estado) throws SQLException;
+    public Cuota buscar(int id) throws SQLException;
+
+    public int modificar(Cuota cuota) throws SQLException;
+
+    public List<Cuota> buscar(int idprestamo, String estado) throws SQLException;
+
 }

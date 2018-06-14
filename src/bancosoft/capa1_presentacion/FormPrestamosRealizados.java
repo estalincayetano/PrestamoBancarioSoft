@@ -50,7 +50,7 @@ public class FormPrestamosRealizados extends javax.swing.JDialog {
         Tabla tabla = new Tabla();
         tabla.agregarColumna(new Columna(null, null));
         tabla.agregarColumna(new Columna("MONTO", "java.lang.Double"));
-        tabla.agregarColumna(new Columna("INTERES ANUAL", "java.lang.Double"));
+        tabla.agregarColumna(new Columna("INTERES ANUAL"+"%", "java.lang.Double"));
         tabla.agregarColumna(new Columna("CUOTAS", "java.lang.Integer"));
         tabla.agregarColumna(new Columna("FECHA", "java.lang.String"));
         tabla.agregarColumna(new Columna("ESTADO", "java.lang.String"));
