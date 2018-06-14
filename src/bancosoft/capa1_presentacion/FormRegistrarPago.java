@@ -282,6 +282,8 @@ public class FormRegistrarPago extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Prestamos Pendientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14))); // NOI18N
 
+        tablaPrestamos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        tablaPrestamos.setForeground(new java.awt.Color(102, 0, 0));
         tablaPrestamos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -293,6 +295,8 @@ public class FormRegistrarPago extends javax.swing.JDialog {
 
             }
         ));
+        tablaPrestamos.setSelectionBackground(new java.awt.Color(204, 255, 0));
+        tablaPrestamos.setSelectionForeground(new java.awt.Color(255, 0, 0));
         tablaPrestamos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaPrestamosMouseClicked(evt);
@@ -313,6 +317,8 @@ public class FormRegistrarPago extends javax.swing.JDialog {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cuotas Pendientes de Pago", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14))); // NOI18N
 
+        tablaCuotas.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        tablaCuotas.setForeground(new java.awt.Color(0, 0, 204));
         tablaCuotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -324,6 +330,8 @@ public class FormRegistrarPago extends javax.swing.JDialog {
 
             }
         ));
+        tablaCuotas.setSelectionBackground(new java.awt.Color(255, 255, 153));
+        tablaCuotas.setSelectionForeground(new java.awt.Color(255, 0, 51));
         tablaCuotas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaCuotasMouseClicked(evt);

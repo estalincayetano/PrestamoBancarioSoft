@@ -494,6 +494,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         );
 
         tablaCuotas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tablaCuotas.setForeground(new java.awt.Color(102, 0, 102));
         tablaCuotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -502,17 +503,16 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
 
             }
         ));
-        tablaCuotas.setColumnSelectionAllowed(true);
         tablaCuotas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaCuotas.setName(""); // NOI18N
-        tablaCuotas.setSelectionBackground(new java.awt.Color(255, 153, 0));
+        tablaCuotas.setSelectionBackground(new java.awt.Color(204, 204, 0));
+        tablaCuotas.setSelectionForeground(new java.awt.Color(204, 0, 0));
         tablaCuotas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaCuotasMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tablaCuotas);
-        tablaCuotas.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tablaCuotas.getAccessibleContext().setAccessibleParent(this);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
