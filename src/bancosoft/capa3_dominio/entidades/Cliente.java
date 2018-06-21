@@ -21,7 +21,7 @@ public class Cliente {
     private int edad;
     private String celular;
 
-    public static final int LONGITUD_DNI = 8;
+    public static final int LONGITUD_DNI =8;
     public static final int LONGITUD_NOMBRE = 40;
     public static final int LONGITUD_APELLIDO = 40;
     public static final int LONGITUD_EDAD = 2;

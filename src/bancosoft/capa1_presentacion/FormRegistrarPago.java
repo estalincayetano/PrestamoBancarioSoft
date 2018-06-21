@@ -14,6 +14,7 @@ import bancosoft.capa3_dominio.entidades.Cuota;
 import bancosoft.capa3_dominio.entidades.Pago;
 import bancosoft.capa3_dominio.entidades.Prestamo;
 import java.text.DecimalFormat;
+import java.util.EventObject;
 import java.util.List;
 import javax.swing.JTable;
 import mastersoft.modelo.ModeloTabla;
@@ -151,12 +152,19 @@ public class FormRegistrarPago extends javax.swing.JDialog {
         if (numeroFila == -1) {
             Mensaje.mostrarFilaNoSeleccionada(this);
             return;
+        } else if (numeroFila == 0) {
+            ModeloTabla modeloTabla = (ModeloTabla) tablaCuotas.getModel();
+            Fila fila = modeloTabla.obtenerFila(numeroFila);
+            selecciona_cuotaid = (Integer) fila.obtenerCelda(0).getValor();
+            monto_cuota = (Double) fila.obtenerCelda(4).getValor();
+            fecha_pago = (java.sql.Date) fila.obtenerCelda(5).getValor();
+        } else {
+            Mensaje.mostrarAdvertencia(this, "Tiene cuotas pendientes, No puede pagar esta cuota");
+            txtMonto.setText("");
+            txtMora.setText("");
+            txtTotal.setText("");
+            return;
         }
-        ModeloTabla modeloTabla = (ModeloTabla) tablaCuotas.getModel();
-        Fila fila = modeloTabla.obtenerFila(numeroFila);
-        selecciona_cuotaid = (Integer) fila.obtenerCelda(0).getValor();
-        monto_cuota = (Double) fila.obtenerCelda(4).getValor();
-        fecha_pago = (java.sql.Date) fila.obtenerCelda(5).getValor();
 
     }
 
@@ -551,12 +559,17 @@ public class FormRegistrarPago extends javax.swing.JDialog {
         cuota.setCuotaid(selecciona_cuotaid);
         cuota.setMontoCuota(monto_cuota);
         cuota.setFechaPago(fecha_pago);
-        pago = new Pago();
-        pago.setCuota(cuota);
-        DecimalFormat formateador = new DecimalFormat("#0.0");
-        txtMonto.setText(String.valueOf(formateador.format(cuota.getMontoCuota())));
-        txtMora.setText(String.valueOf(formateador.format(pago.calcularMora())));
-        txtTotal.setText(String.valueOf(formateador.format(pago.pagoTotal())));
+        if (cuota != null) {
+            pago = new Pago();
+            pago.setCuota(cuota);
+            DecimalFormat formateador = new DecimalFormat("#0.0");
+            txtMonto.setText(String.valueOf(formateador.format(cuota.getMontoCuota())));
+            txtMora.setText(String.valueOf(formateador.format(pago.calcularMora())));
+            txtTotal.setText(String.valueOf(formateador.format(pago.pagoTotal())));
+        } else {
+            Mensaje.mostrarError(this, "Seleccione la primera cuota de la lista");
+        }
+
     }//GEN-LAST:event_tablaCuotasMouseClicked
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed

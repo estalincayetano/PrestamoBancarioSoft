@@ -104,6 +104,19 @@ public class ClienteDAOPostgre implements IClienteDAO {
         return cliente;
     }
 
- 
-   
+    @Override
+    public int contarPrestamo(String dni) throws SQLException {
+        int prestamos = 0;
+        String sentenciaSQL = "select count(p.idprestamo) "
+                + "from prestamo as p "
+                + "join cliente as c on p.idcliente=c.idcliente "
+                + "where c.dni='" + dni + "' and p.estado='VIGENTE'";
+        ResultSet resultado = gestorJDBC.ejecutarConsulta(sentenciaSQL);
+        while (resultado.next()) {
+            prestamos = resultado.getInt("count");
+        }
+        resultado.close();
+        return prestamos;
+    }
+
 }

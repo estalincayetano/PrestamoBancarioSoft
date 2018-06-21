@@ -114,8 +114,33 @@ public class Prestamo {
      el importe de cuota, el seguro de desgraven  
     
      */
+    /*Metodo para validar datos de entrada*/
+    public boolean validarMonto() {
+        if (monto >= 1000) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean validarInteres() {
+        if (interes >= 5) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean validarCuotas() {
+        if (numeroCuotas >= 6) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /*Elimiar porcentaje*/
     /*METODO PARA AGREGAR LAS CUOTAS DEL PRESTAMO*/
+
     public void agregarCuota(Cuota cuota) {
         listCuotas.add(cuota);
     }

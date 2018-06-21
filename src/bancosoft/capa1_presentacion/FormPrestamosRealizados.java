@@ -69,7 +69,7 @@ public class FormPrestamosRealizados extends javax.swing.JDialog {
         String estado = "CANCELADO";
         try {
             RegistrarPrestamoServicio registrarPrestamoServicio = new RegistrarPrestamoServicio();
-            List<Prestamo> prestamos = registrarPrestamoServicio.buscarProductos(estado);
+            List<Prestamo> prestamos = registrarPrestamoServicio.buscarPrestamos(estado);
             ModeloTabla modeloTabla = (ModeloTabla) tablaPagados.getModel();
             modeloTabla.eliminarTotalFilas();
             for (Prestamo prestamo : prestamos) {
@@ -93,7 +93,7 @@ public class FormPrestamosRealizados extends javax.swing.JDialog {
         String estado = "VIGENTE";
         try {
             RegistrarPrestamoServicio registrarPrestamoServicio = new RegistrarPrestamoServicio();
-            List<Prestamo> prestamos = registrarPrestamoServicio.buscarProductos(estado);
+            List<Prestamo> prestamos = registrarPrestamoServicio.buscarPrestamos(estado);
             ModeloTabla modeloTabla = (ModeloTabla) tablaPendientes.getModel();
             modeloTabla.eliminarTotalFilas();
             for (Prestamo prestamo : prestamos) {

@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author estal
  */
 public class Mensaje {
-    
+
     private static final String filaNoSeleccionada = "Seleccione una fila.";
     private static final String filaNoExiste = "La fila seleccionada ya no existe.";
     private static final String errorDeConsulta = "No se pudo realizar la consulta, intente de nuevo o consulte con el Administrador.";
@@ -31,6 +31,9 @@ public class Mensaje {
     private static final String errorDeActualizacion = "No se pudieron actualizar los datos.\n"
             + "Verifique los datos obligatorios y únicos.\n"
             + "intente de nuevo o consulte con el Administrador.";
+    private static final String advertenciaDeExceso = "El cliente tiene el maximo de prestamos.\n"
+            + "No califica para adquirir uno mas.";
+  
 
     /**
      * No se pudo realizar la consulta, intente de nuevo o consulte con el
@@ -48,6 +51,11 @@ public class Mensaje {
      * @param dialogo
      * @return
      */
+    public static void mostrarAlertaExceso(JDialog dialog) {
+        JOptionPane.showMessageDialog(dialog, advertenciaDeExceso, "BancoSoft: Advertencia", JOptionPane.WARNING_MESSAGE);
+    }
+
+
     public static boolean mostrarPreguntaDeEliminacion(JDialog dialogo) {
         int respuesta = JOptionPane.showConfirmDialog(dialogo, preguntaDeEliminacion, "BancoSoft: Pregunta", JOptionPane.YES_NO_OPTION);
         return (respuesta == JOptionPane.YES_OPTION);

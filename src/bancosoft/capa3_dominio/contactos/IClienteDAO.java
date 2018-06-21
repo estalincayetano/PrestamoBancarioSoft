@@ -14,15 +14,17 @@ import java.util.List;
  * @author estal
  */
 public interface IClienteDAO {
+
     public int ingresar(Cliente cliente) throws SQLException;
-    
-     public int modificar(Cliente cliente) throws SQLException;
-    
+
+    public int modificar(Cliente cliente) throws SQLException;
+
     public int eliminar(Cliente cliente) throws SQLException;
-    
+
     public Cliente buscar(int clienteid) throws SQLException;
-    
+
     public Cliente buscarPorDNI(String dni) throws SQLException;
-    
+
+    public int contarPrestamo(String dni) throws SQLException;
 
 }

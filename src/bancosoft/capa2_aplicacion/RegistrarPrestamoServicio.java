@@ -6,6 +6,7 @@
 package bancosoft.capa2_aplicacion;
 
 import bancosoft.capa3_dominio.contactos.FabricaAbstractaDAO;
+import bancosoft.capa3_dominio.contactos.IClienteDAO;
 import bancosoft.capa3_dominio.contactos.IPrestamoDAO;
 import bancosoft.capa3_dominio.entidades.Prestamo;
 import bancosoft.capa4_persistencia.GestorJDBC;
@@ -19,12 +20,13 @@ public class RegistrarPrestamoServicio {
 
     private GestorJDBC gestorJDBC;
     private IPrestamoDAO prestamoDAO;
+    private IClienteDAO clienteDAO;
 
     public RegistrarPrestamoServicio() {
         FabricaAbstractaDAO fabricaAbstractaDAO = FabricaAbstractaDAO.getInstancia();
         gestorJDBC = fabricaAbstractaDAO.crearGestorJDBC();
         prestamoDAO = fabricaAbstractaDAO.crearPrestamoDAO(gestorJDBC);
-
+        clienteDAO = fabricaAbstractaDAO.crearClienteDAO(gestorJDBC);
     }
 
     public int crearPrestamo(Prestamo prestamo) throws Exception {
@@ -41,10 +43,17 @@ public class RegistrarPrestamoServicio {
 
     }
 
-    public List<Prestamo> buscarProductos(String estado) throws Exception {
+    public List<Prestamo> buscarPrestamos(String estado) throws Exception {
         gestorJDBC.abrirConexion();
-        List<Prestamo> productos = prestamoDAO.buscarPorEstado(estado);
+        List<Prestamo> prestamos = prestamoDAO.buscarPorEstado(estado);
         gestorJDBC.cerrarConexion();
-        return productos;
+        return prestamos;
+    }
+
+    public int numeroDePrestamos(String dni) throws Exception {
+        gestorJDBC.abrirConexion();
+        int prestamos = clienteDAO.contarPrestamo(dni);
+        gestorJDBC.cerrarConexion();
+        return prestamos;
     }
 }

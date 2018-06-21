@@ -34,6 +34,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
     Date fecha;
     Cliente cliente;
     Prestamo prestamo;
+    int numero_prestamos;
 
     public FormRegistrarPrestamo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -112,6 +113,8 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         txtApellido = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtFecha = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtNPrestamos = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         txtInteres = new javax.swing.JTextField();
@@ -188,11 +191,18 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         txtApellido.setEnabled(false);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        jLabel5.setText("Fecha");
+        jLabel5.setText("Fecha:");
 
         txtFecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtFecha.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtFecha.setEnabled(false);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel2.setText("N° De Prestamos:");
+
+        txtNPrestamos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtNPrestamos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtNPrestamos.setEnabled(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -200,25 +210,29 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14)
                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19)
-                        .addComponent(jLabel4)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(38, 38, 38)
-                        .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addGap(27, 27, 27)
-                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(64, 64, 64)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -226,18 +240,19 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(btnBuscar))
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscar)
+                            .addComponent(jLabel2)
+                            .addComponent(txtNPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)))
-                .addGap(12, 12, 12)
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel1)))
+                .addGap(13, 13, 13)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
@@ -317,7 +332,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
                 .addComponent(txtInteres, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel11)
@@ -627,24 +642,42 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
         String dni = txtDNI.getText();
-        try {
-            GestionarClienteServicio gestionarClienteServicio = new GestionarClienteServicio();
-            cliente = gestionarClienteServicio.buscarDNI(dni);
-            if (cliente != null) {
-                txtNombre.setText(cliente.getNombre());
-                txtApellido.setText(cliente.getApellido());
-                txtMonto.requestFocusInWindow();
-            } else if (cliente == null) {
-                Mensaje.mostrarError(this, "Ingrese DNI cliente");
+        if (txtDNI.getText().equals("")) {
+            Mensaje.mostrarError(this, "Ingrese DNI del cliente");
+            txtDNI.requestFocusInWindow();
+        } else {
+            if (txtDNI.getText().length() != 8) {
+                Mensaje.mostrarError(this, "El N° de DNI: "+dni+"\n  No es Correcto");
                 limpiarTextos();
                 txtDNI.requestFocusInWindow();
             } else {
-                Mensaje.mostrarError(this, " Ingrese Datos validos.");
-                txtDNI.requestFocusInWindow();
-            }
+                try {
+                    GestionarClienteServicio gestionarClienteServicio = new GestionarClienteServicio();
+                    cliente = gestionarClienteServicio.buscarDNI(dni);
+                    if (cliente != null) {
+                        RegistrarPrestamoServicio registrarPrestamoServicio = new RegistrarPrestamoServicio();
+                        numero_prestamos = registrarPrestamoServicio.numeroDePrestamos(dni);
+                        if (numero_prestamos == 3) {
+                            Mensaje.mostrarAlertaExceso(this);
+                            limpiarTodo();
+                            txtDNI.requestFocusInWindow();
+                        } else {
+                            txtNombre.setText(cliente.getNombre());
+                            txtApellido.setText(cliente.getApellido());
+                            txtMonto.requestFocusInWindow();
+                            txtNPrestamos.setText(String.valueOf(numero_prestamos));
+                        }
 
-        } catch (Exception e) {
-            Mensaje.mostrarError(this, e.getMessage());
+                    } else {
+                        Mensaje.mostrarError(this, "El cliente no se encuentra Registrado en el sistema");
+                        limpiarTextos();
+                        txtDNI.requestFocusInWindow();
+                    }
+
+                } catch (Exception e) {
+                    Mensaje.mostrarError(this, e.getMessage());
+                }
+            }
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -686,7 +719,10 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
 
         Date fecha_next;
         double total_capital = 0, total_interes = 0, total_cuota = 0, total = 0, total_seguro = 0;
-        if (txtMonto.getText() != null && txtInteres.getText() != null && txtCuotas.getText() != null) {
+        if (txtMonto.getText().equals("") && txtInteres.getText().equals("") && txtCuotas.getText().equals("")) {
+            Mensaje.mostrarError(this, "Faltan Datos verifique");
+            txtMonto.requestFocusInWindow();
+        } else {
             prestamo = new Prestamo();
             prestamo.setMonto(Double.parseDouble(txtMonto.getText()));
             prestamo.setInteres(Double.parseDouble(txtInteres.getText()));
@@ -726,9 +762,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
             txtCuotaImporte.setText(String.valueOf(formateador.format(total_cuota)));
             txtTotalPrestamo.setText(String.valueOf(formateador.format(total)));
             txtTotalCredito.setText(String.valueOf(formateador.format(total)));
-        } else {
-            Mensaje.mostrarError(this, "Faltan Datos verifique");
-            txtMonto.requestFocusInWindow();
+
         }
 
     }//GEN-LAST:event_btnCronogramaActionPerformed
@@ -813,6 +847,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -837,6 +872,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
     private javax.swing.JTextField txtInteres;
     private javax.swing.JTextField txtInteresTotal;
     private javax.swing.JTextField txtMonto;
+    private javax.swing.JTextField txtNPrestamos;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNota;
     private javax.swing.JTextField txtSeguro;
