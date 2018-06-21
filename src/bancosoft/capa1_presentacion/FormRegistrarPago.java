@@ -527,23 +527,32 @@ public class FormRegistrarPago extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String dni = txtDNI.getText();
-        try {
-            GestionarClienteServicio gestionarClienteServicio = new GestionarClienteServicio();
-            cliente = gestionarClienteServicio.buscarDNI(dni);
-            if (cliente != null) {
-                txtNombres.setText(cliente.getNombre());
-                txtApellidos.setText(cliente.getApellido());
-                buscarPrestamos(cliente.getDni());
-            } else if (cliente == null) {
-                Mensaje.mostrarError(this, "Ingrese DNI cliente");
+        if (txtDNI.getText().equals("")) {
+            Mensaje.mostrarError(this, "Ingrese DNI del cliente");
+            txtDNI.requestFocusInWindow();
+        } else {
+            if (txtDNI.getText().length() != 8) {
+                Mensaje.mostrarError(this, "El N° de DNI: " + dni + "\n  No es Correcto");
+                txtDNI.setText("");
                 txtDNI.requestFocusInWindow();
             } else {
-                Mensaje.mostrarError(this, " Ingrese Datos validos.");
-                txtDNI.requestFocusInWindow();
-            }
+                try {
+                    GestionarClienteServicio gestionarClienteServicio = new GestionarClienteServicio();
+                    cliente = gestionarClienteServicio.buscarDNI(dni);
+                    if (cliente != null) {
+                        txtNombres.setText(cliente.getNombre());
+                        txtApellidos.setText(cliente.getApellido());
+                        buscarPrestamos(cliente.getDni());
+                    } else {
+                        Mensaje.mostrarError(this, " El cliente no se encuentra registrado en el sistema.");
+                        txtDNI.setText("");
+                        txtDNI.requestFocusInWindow();
+                    }
 
-        } catch (Exception e) {
-            Mensaje.mostrarError(this, e.getMessage());
+                } catch (Exception e) {
+                    Mensaje.mostrarError(this, e.getMessage());
+                }
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
