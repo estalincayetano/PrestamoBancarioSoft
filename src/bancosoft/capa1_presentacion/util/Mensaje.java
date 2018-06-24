@@ -33,7 +33,7 @@ public class Mensaje {
             + "intente de nuevo o consulte con el Administrador.";
     private static final String advertenciaDeExceso = "El cliente tiene el maximo de prestamos.\n"
             + "No califica para adquirir uno mas.";
-  
+    private static final String preguntadePermanecia = "Desea Realizar Otra Transaccion?";
 
     /**
      * No se pudo realizar la consulta, intente de nuevo o consulte con el
@@ -55,6 +55,10 @@ public class Mensaje {
         JOptionPane.showMessageDialog(dialog, advertenciaDeExceso, "BancoSoft: Advertencia", JOptionPane.WARNING_MESSAGE);
     }
 
+    public static boolean mostrarPreguntaDePermanencia(JDialog dialogo) {
+        int respuesta = JOptionPane.showConfirmDialog(dialogo, preguntadePermanecia, "BancoSoft: Pregunta", JOptionPane.YES_NO_OPTION);
+        return (respuesta == JOptionPane.YES_OPTION);
+    }
 
     public static boolean mostrarPreguntaDeEliminacion(JDialog dialogo) {
         int respuesta = JOptionPane.showConfirmDialog(dialogo, preguntaDeEliminacion, "BancoSoft: Pregunta", JOptionPane.YES_NO_OPTION);

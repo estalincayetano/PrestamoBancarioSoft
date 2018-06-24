@@ -5,7 +5,6 @@
  */
 package bancosoft.capa1_presentacion;
 
-
 import bancosoft.capa1_presentacion.util.Mensaje;
 import bancosoft.capa2_aplicacion.GestionarClienteServicio;
 import bancosoft.capa3_dominio.entidades.Cliente;
@@ -19,10 +18,8 @@ import javax.swing.JTextField;
  * @author estal
  */
 public class FormDatosCliente extends javax.swing.JDialog {
-    
-    Cliente cliente;
-    private ArrayList<String> datosObligatorios;
 
+    Cliente cliente;
 
     /**
      * Creates new form FormDatosCliente
@@ -30,28 +27,36 @@ public class FormDatosCliente extends javax.swing.JDialog {
     public FormDatosCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-     
-        textos(true);
+        this.desabilitar();
         this.cliente = new Cliente();
     }
-    
-   
-    
-    void controles(boolean sw) {
-        btnGuardar.setEnabled(sw);
-        btnEliminar.setEnabled(!sw);
-        btnCancelar.setEnabled(!sw);
+
+    public void habilitar() {
+        btnGuardar.setEnabled(true);
+        btnEliminar.setEnabled(false);
+        btnCancelar.setEnabled(true);
+        btnNuevo.setEnabled(false);
+        txtDNI.setEnabled(true);
+        txtNombres.setEnabled(true);
+        txtApellidos.setEnabled(true);
+        txtDireccion.setEnabled(true);
+        txtEdad.setEnabled(true);
+        txtCelular.setEnabled(true);
     }
-    
-    void textos(boolean sw) {
-        txtDNI.setEnabled(sw);
-        txtNombres.setEnabled(sw);
-        txtApellidos.setEnabled(sw);
-        txtDireccion.setEnabled(sw);
-        txtEdad.setEnabled(sw);
-        txtCelular.setEnabled(sw);
+
+    public void desabilitar() {
+        btnGuardar.setEnabled(false);
+        btnEliminar.setEnabled(true);
+        btnCancelar.setEnabled(false);
+        btnNuevo.setEnabled(true);
+        txtDNI.setEnabled(false);
+        txtNombres.setEnabled(false);
+        txtApellidos.setEnabled(false);
+        txtDireccion.setEnabled(false);
+        txtEdad.setEnabled(false);
+        txtCelular.setEnabled(false);
     }
-    
+
     public void limpiarTextos() {
         txtDNI.setText("");
         txtNombres.setText("");
@@ -87,6 +92,8 @@ public class FormDatosCliente extends javax.swing.JDialog {
         btnGuardar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        btnNuevo = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -97,6 +104,7 @@ public class FormDatosCliente extends javax.swing.JDialog {
 
         jLabel8.setBackground(new java.awt.Color(0, 0, 0));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/client (2).png"))); // NOI18N
         jLabel8.setText("DATOS CLIENTE");
@@ -104,6 +112,7 @@ public class FormDatosCliente extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Dni:");
 
+        txtDNI.setBackground(new java.awt.Color(255, 255, 0));
         txtDNI.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -111,6 +120,7 @@ public class FormDatosCliente extends javax.swing.JDialog {
             }
         });
 
+        txtNombres.setBackground(new java.awt.Color(255, 255, 0));
         txtNombres.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -124,6 +134,7 @@ public class FormDatosCliente extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Apellidos:");
 
+        txtApellidos.setBackground(new java.awt.Color(255, 255, 0));
         txtApellidos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -131,6 +142,7 @@ public class FormDatosCliente extends javax.swing.JDialog {
             }
         });
 
+        txtDireccion.setBackground(new java.awt.Color(255, 255, 0));
         txtDireccion.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -144,6 +156,7 @@ public class FormDatosCliente extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Edad:");
 
+        txtEdad.setBackground(new java.awt.Color(255, 255, 0));
         txtEdad.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtEdad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -163,6 +176,7 @@ public class FormDatosCliente extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Celular:");
 
+        btnGuardar.setBackground(new java.awt.Color(0, 204, 204));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/guardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -171,6 +185,7 @@ public class FormDatosCliente extends javax.swing.JDialog {
             }
         });
 
+        btnEliminar.setBackground(new java.awt.Color(255, 51, 0));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/delete.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -179,11 +194,30 @@ public class FormDatosCliente extends javax.swing.JDialog {
             }
         });
 
+        btnCancelar.setBackground(new java.awt.Color(255, 204, 102));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
+            }
+        });
+
+        btnNuevo.setBackground(new java.awt.Color(255, 255, 255));
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/new.png"))); // NOI18N
+        btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setBackground(new java.awt.Color(102, 255, 153));
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/salir.png"))); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -194,38 +228,42 @@ public class FormDatosCliente extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnGuardar)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel6))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel7))
-                                    .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtApellidos)
-                                    .addComponent(txtNombres)
-                                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(1, 62, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7)
+                                .addGap(30, 30, 30))
+                            .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtApellidos)
+                            .addComponent(txtNombres)
+                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(btnGuardar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +286,7 @@ public class FormDatosCliente extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -257,12 +295,16 @@ public class FormDatosCliente extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         getAccessibleContext().setAccessibleParent(this);
@@ -276,48 +318,62 @@ public class FormDatosCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        int edad = 0;
-        cliente.setDni(txtDNI.getText());
-        cliente.setNombre(txtNombres.getText());
-        cliente.setApellido(txtApellidos.getText());
-        cliente.setDireccion(txtDireccion.getText());
-        cliente.setEdad(edad = Integer.parseInt(txtEdad.getText()));
-        cliente.setCelular(txtCelular.getText());
-        
-        GestionarClienteServicio gestionarClienteServicio = new GestionarClienteServicio();
-        
-        try {
-            int registros_afectados = gestionarClienteServicio.crearCliente(cliente);
-            if (registros_afectados == 1) {
-                Mensaje.mostrarAfirmacionDeCreacion(this);
-                limpiarTextos();
-                controles(true);
-                textos(true);
+        if (txtDNI.getText().equals("") || txtNombres.getText().equals("")
+                || txtApellidos.getText().equals("")
+                || txtDireccion.getText().equals("") || txtEdad.getText().equals("")) {
+            Mensaje.mostrarErrorDeCreacion(this);
+            limpiarTextos();
+            this.desabilitar();
+        } else {
+            if (txtDNI.getText().length() != 8) {
+                Mensaje.mostrarError(this, "El N°: " + txtDNI.getText() + " No es un numero de Dni Valido");
                 txtDNI.requestFocusInWindow();
             } else {
-                Mensaje.mostrarErrorDeCreacion(this);
-                limpiarTextos();
-                controles(false);
-                textos(true);
-                txtDNI.requestFocusInWindow();
+                String dni = txtDNI.getText();
+                int edad = 0;
+                cliente.setDni(dni);
+                cliente.setNombre(txtNombres.getText());
+                cliente.setApellido(txtApellidos.getText());
+                cliente.setDireccion(txtDireccion.getText());
+                cliente.setEdad(edad = Integer.parseInt(txtEdad.getText()));
+                cliente.setCelular(txtCelular.getText());
+                try {
+                    GestionarClienteServicio gestionarClienteServicio = new GestionarClienteServicio();
+                    Cliente clientito = new Cliente();
+                    clientito = gestionarClienteServicio.buscarDNI(dni);
+                    if (clientito != null) {
+                        Mensaje.mostrarError(this, "El DNI: "+dni+" Ya se encuentra registrado en el sistema");
+                        limpiarTextos();
+                        this.desabilitar();
+                    } else {
+                        int registros_afectados = gestionarClienteServicio.crearCliente(cliente);
+                        if (registros_afectados == 1) {
+                            Mensaje.mostrarAfirmacionDeCreacion(this);
+                            limpiarTextos();
+                            this.desabilitar();
+                            txtDNI.requestFocusInWindow();
+                        } else {
+                            Mensaje.mostrarErrorDeCreacion(this);
+                            this.habilitar();
+                            txtDNI.requestFocusInWindow();
+                        }
+                    }
+                } catch (Exception e) {
+                    Mensaje.mostrarError(this, e.getMessage());
+                }
             }
-            
-        } catch (Exception e) {
-            Mensaje.mostrarError(this, e.getMessage());
+
         }
-        limpiarTextos();
-        controles(true);
-        textos(true);
+
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        controles(false);
-        textos(false);
         limpiarTextos();
         String dni;
         dni = JOptionPane.showInputDialog("DNI del Cliente  : ");
-        GestionarClienteServicio gestionarClienteServicio = new GestionarClienteServicio();
         try {
+            GestionarClienteServicio gestionarClienteServicio = new GestionarClienteServicio();
             cliente = gestionarClienteServicio.buscarDNI(dni);
             if (cliente != null) {
                 txtDNI.setText(cliente.getDni());
@@ -332,27 +388,22 @@ public class FormDatosCliente extends javax.swing.JDialog {
                     if (registros_afectados == 1) {
                         Mensaje.mostrarAfirmacionDeEliminacion(this);
                         limpiarTextos();
-                        textos(true);
-                        controles(true);
-                        txtDNI.requestFocusInWindow();
+                        this.desabilitar();
                     } else {
                         Mensaje.mostrarErrorDeEliminacion(this);
                         limpiarTextos();
-                        textos(true);
-                        controles(true);
+                        this.desabilitar();
                         txtDNI.requestFocusInWindow();
                     }
                 } else {
                     limpiarTextos();
-                    textos(true);
-                    controles(true);
+                    this.desabilitar();
                 }
-                
+
             }
-            Mensaje.mostrarAdvertencia(this, "Datos Vacios");
+
             limpiarTextos();
-            textos(true);
-            controles(true);
+            this.desabilitar();
         } catch (Exception e) {
             Mensaje.mostrarError(this, e.getMessage());
         }
@@ -360,9 +411,7 @@ public class FormDatosCliente extends javax.swing.JDialog {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         limpiarTextos();
-        textos(true);
-        controles(true);
-        txtDNI.requestFocusInWindow();
+        this.desabilitar();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
@@ -404,6 +453,15 @@ public class FormDatosCliente extends javax.swing.JDialog {
             evt.consume();
         }
     }//GEN-LAST:event_txtCelularKeyTyped
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        this.habilitar();
+        txtDNI.requestFocusInWindow();
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -451,6 +509,8 @@ public class FormDatosCliente extends javax.swing.JDialog {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

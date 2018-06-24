@@ -35,6 +35,7 @@ public class FormRegistrarPago extends javax.swing.JDialog {
     private int selecciona_cuotaid;
     private java.sql.Date fecha_pago;
     private double monto_cuota;
+    private int numFila;
 
     /**
      * Creates new form FormRegistrarPago
@@ -149,23 +150,17 @@ public class FormRegistrarPago extends javax.swing.JDialog {
 
     public void seleccionaCuota() {
         int numeroFila = tablaCuotas.getSelectedRow();
-        if (numeroFila == -1) {
-            Mensaje.mostrarFilaNoSeleccionada(this);
+        numFila = numeroFila;
+        if (numeroFila != 0) {
             return;
-        } else if (numeroFila == 0) {
+        } else {
             ModeloTabla modeloTabla = (ModeloTabla) tablaCuotas.getModel();
             Fila fila = modeloTabla.obtenerFila(numeroFila);
             selecciona_cuotaid = (Integer) fila.obtenerCelda(0).getValor();
             monto_cuota = (Double) fila.obtenerCelda(4).getValor();
             fecha_pago = (java.sql.Date) fila.obtenerCelda(5).getValor();
-        } else {
-            Mensaje.mostrarAdvertencia(this, "Tiene cuotas pendientes, No puede pagar esta cuota");
-            txtMonto.setText("");
-            txtMora.setText("");
-            txtTotal.setText("");
-            return;
-        }
 
+        }
     }
 
     /**
@@ -185,7 +180,7 @@ public class FormRegistrarPago extends javax.swing.JDialog {
         txtDNI = new javax.swing.JTextField();
         txtNombres = new javax.swing.JTextField();
         txtApellidos = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaPrestamos = new javax.swing.JTable();
@@ -207,12 +202,15 @@ public class FormRegistrarPago extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Registro De Pagos");
+        setBackground(new java.awt.Color(255, 204, 102));
 
+        jLabel1.setBackground(new java.awt.Color(255, 204, 102));
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 204));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("REGISTRAR PAGOS DE CUOTAS DE PRESTAMOS");
 
+        jPanel1.setBackground(new java.awt.Color(255, 204, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -239,11 +237,11 @@ public class FormRegistrarPago extends javax.swing.JDialog {
         txtApellidos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtApellidos.setEnabled(false);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/search.png"))); // NOI18N
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/search.png"))); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -267,7 +265,7 @@ public class FormRegistrarPago extends javax.swing.JDialog {
                         .addGap(45, 45, 45)
                         .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,7 +274,7 @@ public class FormRegistrarPago extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -288,6 +286,7 @@ public class FormRegistrarPago extends javax.swing.JDialog {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 204, 102));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Prestamos Pendientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14))); // NOI18N
 
         tablaPrestamos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -323,6 +322,7 @@ public class FormRegistrarPago extends javax.swing.JDialog {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
+        jPanel3.setBackground(new java.awt.Color(255, 204, 102));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cuotas Pendientes de Pago", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14))); // NOI18N
 
         tablaCuotas.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -358,6 +358,7 @@ public class FormRegistrarPago extends javax.swing.JDialog {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
         );
 
+        jPanel4.setBackground(new java.awt.Color(255, 204, 102));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de Pago"));
 
         btnPagar.setText("Pagar Cuota");
@@ -517,6 +518,8 @@ public class FormRegistrarPago extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        getAccessibleContext().setAccessibleParent(this);
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -525,7 +528,7 @@ public class FormRegistrarPago extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String dni = txtDNI.getText();
         if (txtDNI.getText().equals("")) {
             Mensaje.mostrarError(this, "Ingrese DNI del cliente");
@@ -554,7 +557,7 @@ public class FormRegistrarPago extends javax.swing.JDialog {
                 }
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void tablaPrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPrestamosMouseClicked
         String estado = "PENDIENTE";
@@ -565,10 +568,10 @@ public class FormRegistrarPago extends javax.swing.JDialog {
     private void tablaCuotasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCuotasMouseClicked
         cuota = new Cuota();
         seleccionaCuota();
-        cuota.setCuotaid(selecciona_cuotaid);
-        cuota.setMontoCuota(monto_cuota);
-        cuota.setFechaPago(fecha_pago);
-        if (cuota != null) {
+        if (numFila == 0) {
+            cuota.setCuotaid(selecciona_cuotaid);
+            cuota.setMontoCuota(monto_cuota);
+            cuota.setFechaPago(fecha_pago);
             pago = new Pago();
             pago.setCuota(cuota);
             DecimalFormat formateador = new DecimalFormat("#0.0");
@@ -576,7 +579,10 @@ public class FormRegistrarPago extends javax.swing.JDialog {
             txtMora.setText(String.valueOf(formateador.format(pago.calcularMora())));
             txtTotal.setText(String.valueOf(formateador.format(pago.pagoTotal())));
         } else {
-            Mensaje.mostrarError(this, "Seleccione la primera cuota de la lista");
+            Mensaje.mostrarError(this, "La cuota Seleccionada no puede ser Pagada \n Tiene cuotas Anteriores Pendientes");
+            txtMonto.setText("");
+            txtMora.setText("");
+            txtTotal.setText("");
         }
 
     }//GEN-LAST:event_tablaCuotasMouseClicked
@@ -589,18 +595,32 @@ public class FormRegistrarPago extends javax.swing.JDialog {
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        try {
-            RegistrarPagoServicio registrarPagoServicio = new RegistrarPagoServicio();
-            int registros_afectados = registrarPagoServicio.registrarPago(pago);
-            if (registros_afectados == 1) {
-                Mensaje.mostrarAfirmacionDeCreacion(this);
-                limpiarTodo();
-                ModeloTabla modeloTabla = (ModeloTabla) tablaCuotas.getModel();
-                modeloTabla.eliminarTotalFilas();
-                txtDNI.requestFocusInWindow();
+        if (txtMonto.getText().equals("") || txtMora.getText().equals("") || txtTotal.getText().equals("")) {
+            Mensaje.mostrarErrorDeCreacion(this);
+        } else {
+            try {
+                RegistrarPagoServicio registrarPagoServicio = new RegistrarPagoServicio();
+                int registros_afectados = registrarPagoServicio.registrarPago(pago);
+                if (registros_afectados == 1) {
+                    Mensaje.mostrarAfirmacionDeCreacion(this);
+                    if (Mensaje.mostrarPreguntaDePermanencia(this)) {
+                        ModeloTabla modeloTabla = (ModeloTabla) tablaCuotas.getModel();
+                        modeloTabla.refrescarDatos();
+                        txtMonto.setText("");
+                        txtMora.setText("");
+                        txtTotal.setText("");
+
+                    } else {
+                        limpiarTodo();
+                        ModeloTabla modeloTabla = (ModeloTabla) tablaCuotas.getModel();
+                        modeloTabla.eliminarTotalFilas();
+                        txtDNI.requestFocusInWindow();
+                    }
+
+                }
+            } catch (Exception e) {
+                Mensaje.mostrarError(this, e.getMessage());
             }
-        } catch (Exception e) {
-            Mensaje.mostrarError(this, "No se que esta pasando:  " + e.getMessage());
         }
     }//GEN-LAST:event_btnPagarActionPerformed
 
@@ -655,10 +675,10 @@ public class FormRegistrarPago extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnPagar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
