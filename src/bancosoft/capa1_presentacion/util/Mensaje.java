@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bancosoft.capa1_presentacion.util;
 
 import javax.swing.JDialog;
@@ -34,7 +30,7 @@ public class Mensaje {
     private static final String advertenciaDeExceso = "El cliente tiene el maximo de prestamos.\n"
             + "No califica para adquirir uno mas.";
     private static final String preguntadePermanecia = "Desea Realizar Otra Transaccion?";
-
+    private static final String preguntaConfirmacion="Confirme la Transaccion";
     /**
      * No se pudo realizar la consulta, intente de nuevo o consulte con el
      * Administrador.
@@ -51,6 +47,10 @@ public class Mensaje {
      * @param dialogo
      * @return
      */
+       public static boolean mostrarPreguntaDeConfirmacion(JDialog dialogo) {
+        int respuesta = JOptionPane.showConfirmDialog(dialogo, preguntaConfirmacion, "BancoSoft: Pregunta", JOptionPane.OK_CANCEL_OPTION);
+        return (respuesta == JOptionPane.OK_OPTION);
+    }
     public static void mostrarAlertaExceso(JDialog dialog) {
         JOptionPane.showMessageDialog(dialog, advertenciaDeExceso, "BancoSoft: Advertencia", JOptionPane.WARNING_MESSAGE);
     }

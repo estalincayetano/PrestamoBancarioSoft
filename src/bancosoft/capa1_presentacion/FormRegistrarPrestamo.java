@@ -519,7 +519,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
             }
         });
 
-        btnCancelar.setBackground(new java.awt.Color(255, 51, 0));
+        btnCancelar.setBackground(new java.awt.Color(255, 153, 51));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -857,7 +857,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
                 if (registros_afectados == 1) {
                     Mensaje.mostrarAfirmacionDeCreacion(this);
                     limpiarTodo();
-                    txtDNI.requestFocusInWindow();
+                    this.desabilitar();
                 } else {
                     Mensaje.mostrarErrorDeCreacion(this);
                 }

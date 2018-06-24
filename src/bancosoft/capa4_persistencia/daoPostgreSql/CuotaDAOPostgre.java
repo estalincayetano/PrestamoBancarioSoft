@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bancosoft.capa4_persistencia.daoPostgreSql;
 
 import bancosoft.capa3_dominio.contactos.ICuotaDAO;
@@ -32,10 +28,6 @@ public class CuotaDAOPostgre implements ICuotaDAO {
     public List<Cuota> buscar(int idprestamo, String estado) throws SQLException {
         List<Cuota> cuotas = new ArrayList<>();
         Cuota cuota;
-        /*select cu.* from cliente as c
-         join prestamo as p on c.idcliente = p.idcliente
-         join cuota as cu on cu.idprestamo = p.idprestamo
-         WHERE cu.estado = 'PENDIENTE' AND c.dni = '70804619' and p.idprestamo=10'*/
         String sentenciaSQL = "select cu.idcuota, cu.capital, cu.interes, cu.seguro, cu.montocuota, cu.fechapago, cu.estado "
                 + "from cliente as c "
                 + "join prestamo as p on c.idcliente = p.idcliente "
@@ -64,6 +56,21 @@ public class CuotaDAOPostgre implements ICuotaDAO {
         sentencia.setString(1, "CANCELADA");
         sentencia.setInt(2, cuota.getCuotaid());
         return sentencia.executeUpdate();
+    }
+
+    @Override
+    public int cuotaMax(int idprestamo) throws SQLException {
+        String sentencia_ultima_cuota = "select max(c.idcuota) as maxi from cuota as c "
+                + "join prestamo as p on c.idprestamo=p.idprestamo "
+                + "where p.idprestamo=" + idprestamo;
+        ResultSet resultado_ultimo = gestorJDBC.ejecutarConsulta(sentencia_ultima_cuota);
+
+        int cuotaid_ultimo = 0;
+        while (resultado_ultimo.next()) {
+            cuotaid_ultimo = resultado_ultimo.getInt("maxi");
+        }
+        resultado_ultimo.close();
+        return cuotaid_ultimo;
     }
 
 }

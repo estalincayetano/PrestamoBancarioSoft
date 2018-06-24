@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bancosoft.capa2_aplicacion;
 
 import bancosoft.capa3_dominio.contactos.FabricaAbstractaDAO;
@@ -48,6 +44,17 @@ public class RegistrarPagoServicio {
         return cuota;
     }
 
+    public int cuotaMax(int idprestamo) throws Exception {
+        gestorJDBC.abrirConexion();
+        int registros_afectados = cuotaDAO.cuotaMax(idprestamo);
+        return registros_afectados;
+    }
+
+    public int updatePrestamo(int idprestamo) throws Exception {
+        gestorJDBC.abrirConexion();
+        int registros_afectados = prestamoDAO.modificar(idprestamo);
+        return registros_afectados;
+    }
 
     public int registrarPago(Pago pago) throws Exception {
         gestorJDBC.abrirConexion();

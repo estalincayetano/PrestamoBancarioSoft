@@ -19,5 +19,7 @@ public interface IPrestamoDAO {
 
     public List<Prestamo> buscarPorEstado(String estado) throws SQLException;
 
+     public int modificar(int idprestamo) throws SQLException;
+
     public List<Prestamo> buscarPrestamoCliente(String dni) throws SQLException;
 }

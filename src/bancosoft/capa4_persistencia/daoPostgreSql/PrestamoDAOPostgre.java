@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bancosoft.capa4_persistencia.daoPostgreSql;
 
 import bancosoft.capa1_presentacion.util.HelpersFecha;
@@ -122,6 +118,19 @@ public class PrestamoDAOPostgre implements IPrestamoDAO {
         }
         resultado.close();
         return prestamos;
+    }
+
+    @Override
+    public int modificar(int idprestamo) throws SQLException {
+        /*update prestamo set estado='CANCELADO'
+         where idprestamo=49*/
+        int registros_afectados;
+        String sentenciaSQL = "update prestamo set estado = ? where idprestamo = ?";
+        PreparedStatement sentencia = gestorJDBC.prepararSentencia(sentenciaSQL);
+        sentencia.setString(1, "CANCELADO");
+        sentencia.setInt(2, idprestamo);
+        registros_afectados=sentencia.executeUpdate();
+        return registros_afectados;
     }
 
 }
