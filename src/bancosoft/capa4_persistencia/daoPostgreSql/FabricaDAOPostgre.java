@@ -6,6 +6,7 @@ import bancosoft.capa3_dominio.contactos.IClienteDAO;
 import bancosoft.capa3_dominio.contactos.ICuotaDAO;
 import bancosoft.capa3_dominio.contactos.IPagoDAO;
 import bancosoft.capa3_dominio.contactos.IPrestamoDAO;
+import bancosoft.capa3_dominio.contactos.IUsuarioDAO;
 import bancosoft.capa4_persistencia.GestorJDBC;
 
 /**
@@ -37,6 +38,11 @@ public class FabricaDAOPostgre extends FabricaAbstractaDAO {
     @Override
     public IPagoDAO crearPagoDAO(GestorJDBC gestorJDBC) {
         return new PagoDaoPostgre(gestorJDBC);
+    }
+
+    @Override
+    public IUsuarioDAO crearUsuarioDAO(GestorJDBC gestorJDBC) {
+       return new UsuarioDAOPostgre(gestorJDBC);
     }
 
 }
