@@ -301,8 +301,8 @@ public class FormMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxMenuItem2ActionPerformed
 
     private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
-        FormRegistrarPagos registrarPagos = new FormRegistrarPagos(this, true);
-        registrarPagos.setVisible(true);
+      //  FormRegistrarPagos registrarPagos = new FormRegistrarPagos(this, true);
+       // registrarPagos.setVisible(true);
     }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
 
     private void jCheckBoxMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem4ActionPerformed
