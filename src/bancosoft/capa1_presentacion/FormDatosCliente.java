@@ -2,7 +2,9 @@ package bancosoft.capa1_presentacion;
 
 import bancosoft.capa1_presentacion.util.Mensaje;
 import bancosoft.capa2_aplicacion.GestionarClienteServicio;
+import bancosoft.capa3_dominio.entidades.Analista;
 import bancosoft.capa3_dominio.entidades.Cliente;
+import bancosoft.capa3_dominio.entidades.Usuario;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -14,6 +16,7 @@ import javax.swing.JTextField;
  */
 public class FormDatosCliente extends javax.swing.JDialog {
     
+    Usuario user = FormInciarSeccion.usuario;
     Cliente cliente;
     
     public FormDatosCliente(java.awt.Frame parent, boolean modal) {
@@ -87,6 +90,7 @@ public class FormDatosCliente extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Registro de Clientes");
         setBackground(new java.awt.Color(0, 166, 184));
         setResizable(false);
         setSize(new java.awt.Dimension(378, 316));
@@ -386,6 +390,9 @@ public class FormDatosCliente extends javax.swing.JDialog {
                 cliente.setEdad(edad = Integer.parseInt(txtEdad.getText()));
                 cliente.setCelular(txtCelular.getText());
                 try {
+                    Analista analista = new Analista();
+                    analista.setIdanalista(user.getUsuarioid());
+                    cliente.setAnalista(analista);
                     GestionarClienteServicio gestionarClienteServicio = new GestionarClienteServicio();
                     Cliente clientito = new Cliente();
                     clientito = gestionarClienteServicio.buscarDNI(dni);

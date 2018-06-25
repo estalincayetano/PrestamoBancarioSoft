@@ -17,7 +17,7 @@ public interface IPrestamoDAO {
 
     public int ingresar(Prestamo prestamo) throws SQLException;
 
-    public List<Prestamo> buscarPorEstado(String estado) throws SQLException;
+    public List<Prestamo> buscarPorEstado(String estado, int idanalista) throws SQLException;
 
      public int modificar(int idprestamo) throws SQLException;
 

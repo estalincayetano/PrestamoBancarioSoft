@@ -173,15 +173,15 @@ public class FormInciarSeccion extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        String nombre = txtUsuario.getText();
-        String contrasenia = txtPassword.getText();
-        ingresarAlSistema(nombre, contrasenia);
+        String user = txtUsuario.getText();
+        String contrasenia = new String(txtPassword.getPassword());
+        ingresarAlSistema(user, contrasenia);
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        String nombre = txtUsuario.getText();
-        String contrasenia = txtPassword.getText();
-        ingresarAlSistema(nombre, contrasenia);
+        String user = txtUsuario.getText();
+        String contrasenia = new String(txtPassword.getPassword());
+        ingresarAlSistema(user, contrasenia);
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

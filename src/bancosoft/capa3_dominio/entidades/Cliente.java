@@ -1,4 +1,3 @@
-
 package bancosoft.capa3_dominio.entidades;
 
 import java.util.ArrayList;
@@ -9,6 +8,7 @@ import java.util.ArrayList;
  */
 public class Cliente {
 
+    private Analista analista;
     private int clienteid;
     private String dni;
     private String nombre;
@@ -17,7 +17,7 @@ public class Cliente {
     private int edad;
     private String celular;
 
-    public static final int LONGITUD_DNI =8;
+    public static final int LONGITUD_DNI = 8;
     public static final int LONGITUD_NOMBRE = 40;
     public static final int LONGITUD_APELLIDO = 40;
     public static final int LONGITUD_EDAD = 2;
@@ -29,6 +29,14 @@ public class Cliente {
 
     public int getClienteid() {
         return clienteid;
+    }
+
+    public Analista getAnalista() {
+        return analista;
+    }
+
+    public void setAnalista(Analista analista) {
+        this.analista = analista;
     }
 
     public void setClienteid(int clienteid) {
@@ -94,6 +102,5 @@ public class Cliente {
     public void setCelular(String celular) {
         this.celular = celular;
     }
-
 
 }

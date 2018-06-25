@@ -1,4 +1,3 @@
-
 package bancosoft.capa4_persistencia.daoPostgreSql;
 
 import bancosoft.capa1_presentacion.util.Mensaje;
@@ -25,11 +24,12 @@ public class PagoDaoPostgre implements IPagoDAO {
     public int Ingresar(Pago pago) throws SQLException {
         int registros_afectados;
         try {
-            String sentenciaSQL_pago = "insert into pago(fecha, idcuota, monto) values( ?, ?, ?)";
+            String sentenciaSQL_pago = "insert into pago(fecha, idcuota, monto, idcajero) values( ?, ?, ?, ?)";
             PreparedStatement sentencia = gestorJDBC.prepararSentencia(sentenciaSQL_pago);
             sentencia.setDate(1, pago.getFecha());
             sentencia.setInt(2, pago.getCuota().getCuotaid());
             sentencia.setDouble(3, pago.pagoTotal());
+            sentencia.setInt(4, pago.getCajero().getIdcajero());
             registros_afectados = sentencia.executeUpdate();
             if (registros_afectados != 1) {
                 throw new SQLException("No se pudo registrar el Pago de la Cuota.\n"

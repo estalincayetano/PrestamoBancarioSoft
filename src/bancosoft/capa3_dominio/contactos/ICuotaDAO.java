@@ -19,6 +19,8 @@ public interface ICuotaDAO {
 
     public List<Cuota> buscar(int idprestamo, String estado) throws SQLException;
 
+    public List<Cuota> listCuotas(int idprestamo) throws SQLException;
+
     public int cuotaMax(int idprestamo) throws SQLException;
 
 }

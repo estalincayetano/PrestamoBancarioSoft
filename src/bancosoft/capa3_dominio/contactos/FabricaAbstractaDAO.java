@@ -29,4 +29,8 @@ public abstract class FabricaAbstractaDAO {
     public abstract IPagoDAO crearPagoDAO(GestorJDBC gestorJDBC);
 
     public abstract IUsuarioDAO crearUsuarioDAO(GestorJDBC gestorJDBC);
+
+    public abstract IAnalistaDAO crearAnalistaDAO(GestorJDBC gestorJDBC);
+
+    public abstract ICajeroDAO crearCajeroDAO(GestorJDBC gestorJDBC);
 }

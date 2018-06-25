@@ -1,4 +1,3 @@
-
 package bancosoft.capa3_dominio.entidades;
 
 import java.util.ArrayList;
@@ -13,6 +12,7 @@ import java.text.DecimalFormat;
 public class Prestamo {
 
     private Cliente cliente;
+    private Analista analista;
     private int prestamoid;
     private double monto;
     private double interes;
@@ -34,6 +34,14 @@ public class Prestamo {
 
     public Cliente getCliente() {
         return cliente;
+    }
+
+    public Analista getAnalista() {
+        return analista;
+    }
+
+    public void setAnalista(Analista analista) {
+        this.analista = analista;
     }
 
     public List<Cuota> getListCuotas() {

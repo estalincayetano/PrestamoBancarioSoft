@@ -20,5 +20,5 @@ public interface IUsuarioDAO {
 
     public Usuario buscarUsuario(String dni) throws SQLException;
 
-    public Usuario ingresoSistema(String nombre, String contrasenia) throws SQLException;
+    public Usuario ingresoSistema(String user, String contrasenia) throws SQLException;
 }

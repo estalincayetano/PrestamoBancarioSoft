@@ -1,4 +1,3 @@
-
 package bancosoft.capa4_persistencia.daoPostgreSql;
 
 import bancosoft.capa3_dominio.contactos.IClienteDAO;
@@ -25,8 +24,8 @@ public class ClienteDAOPostgre implements IClienteDAO {
     @Override
     public int ingresar(Cliente cliente) throws SQLException {
 
-        String sentenciaSQL = "insert into cliente(dni, nombre, apellidos, direccion, edad, celular) "
-                + " values(?, ?, ?, ?, ?, ?)";
+        String sentenciaSQL = "insert into cliente(dni, nombre, apellidos, direccion, edad, celular, idanalista) "
+                + " values(?, ?, ?, ?, ?, ?,?)";
         PreparedStatement sentencia = gestorJDBC.prepararSentencia(sentenciaSQL);
         sentencia.setString(1, cliente.getDni());
         sentencia.setString(2, cliente.getNombre());
@@ -34,6 +33,7 @@ public class ClienteDAOPostgre implements IClienteDAO {
         sentencia.setString(4, cliente.getDireccion());
         sentencia.setInt(5, cliente.getEdad());
         sentencia.setString(6, cliente.getCelular());
+        sentencia.setInt(7, cliente.getAnalista().getIdanalista());
         return sentencia.executeUpdate();
     }
 
@@ -113,6 +113,23 @@ public class ClienteDAOPostgre implements IClienteDAO {
         }
         resultado.close();
         return prestamos;
+    }
+
+    @Override
+    public Cliente buscarPrestamoCliente(int idprestamo) throws SQLException {
+        Cliente cliente = null;
+        String sentenciaSQL = "select c.dni, c.nombre, c.apellidos from cliente as c "
+                + "join prestamo as p on p.idcliente=c.idcliente "
+                + "where p.idprestamo= " + idprestamo;
+        ResultSet resultado = gestorJDBC.ejecutarConsulta(sentenciaSQL);
+        if (resultado.next()) {
+            cliente = new Cliente();
+            cliente.setDni(resultado.getString("dni"));
+            cliente.setNombre(resultado.getString("nombre"));
+            cliente.setApellido(resultado.getString("apellidos"));
+        }
+        resultado.close();
+        return cliente;
     }
 
 }

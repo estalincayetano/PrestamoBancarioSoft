@@ -1,7 +1,8 @@
-
 package bancosoft.capa4_persistencia.daoPostgreSql;
 
 import bancosoft.capa3_dominio.contactos.FabricaAbstractaDAO;
+import bancosoft.capa3_dominio.contactos.IAnalistaDAO;
+import bancosoft.capa3_dominio.contactos.ICajeroDAO;
 import bancosoft.capa3_dominio.contactos.IClienteDAO;
 import bancosoft.capa3_dominio.contactos.ICuotaDAO;
 import bancosoft.capa3_dominio.contactos.IPagoDAO;
@@ -42,7 +43,17 @@ public class FabricaDAOPostgre extends FabricaAbstractaDAO {
 
     @Override
     public IUsuarioDAO crearUsuarioDAO(GestorJDBC gestorJDBC) {
-       return new UsuarioDAOPostgre(gestorJDBC);
+        return new UsuarioDAOPostgre(gestorJDBC);
+    }
+
+    @Override
+    public IAnalistaDAO crearAnalistaDAO(GestorJDBC gestorJDBC) {
+        return new AnalistaDAOPostgre(gestorJDBC);
+    }
+
+    @Override
+    public ICajeroDAO crearCajeroDAO(GestorJDBC gestorJDBC) {
+        return new CajeroDAOPostgre(gestorJDBC);
     }
 
 }

@@ -1,4 +1,3 @@
-
 package bancosoft.capa4_persistencia.daoPostgreSql;
 
 import bancosoft.capa3_dominio.contactos.ICuotaDAO;
@@ -71,6 +70,26 @@ public class CuotaDAOPostgre implements ICuotaDAO {
         }
         resultado_ultimo.close();
         return cuotaid_ultimo;
+    }
+
+    @Override
+    public List<Cuota> listCuotas(int idprestamo) throws SQLException {
+        List<Cuota> cuotas = new ArrayList<>();
+        Cuota cuota;
+        String sentenciaSQL = "select c.idcuota, c.montocuota, c.fechapago, c.estado from cuota as c "
+                + "where idprestamo= " + idprestamo;
+        ResultSet resultado = gestorJDBC.ejecutarConsulta(sentenciaSQL);
+        while (resultado.next()) {
+            cuota = new Cuota();
+            cuota.setCuotaid(resultado.getInt("idcuota"));
+            cuota.setMontoCuota(resultado.getDouble("montocuota"));
+            cuota.setFechaPago(resultado.getDate("fechapago"));
+            cuota.setEstado(resultado.getString("estado"));
+            cuotas.add(cuota);
+        }
+        resultado.close();
+
+        return cuotas;
     }
 
 }

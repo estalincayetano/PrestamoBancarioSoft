@@ -1,4 +1,3 @@
-
 package bancosoft.capa3_dominio.entidades;
 
 import java.sql.Date;
@@ -8,6 +7,8 @@ import java.sql.Date;
  * @author estal
  */
 public class Pago {
+
+    private Cajero cajero;
     private Cuota cuota;
     private int idpago;
     private Date fecha;
@@ -15,6 +16,14 @@ public class Pago {
 
     public Pago() {
         fecha = Date.valueOf(String.format("%1$tY-%1$tm-%1$te", new java.util.Date()));
+    }
+
+    public Cajero getCajero() {
+        return cajero;
+    }
+
+    public void setCajero(Cajero cajero) {
+        this.cajero = cajero;
     }
 
     public Cuota getCuota() {
@@ -61,7 +70,7 @@ public class Pago {
     public double calcularMora() {
         double mora = 0;
         if (ValidarFechaPago() == true) {
-            mora = 0.03*cuota.getMontoCuota();
+            mora = 0.03 * cuota.getMontoCuota();
         } else {
             mora = 0;
         }
@@ -69,7 +78,7 @@ public class Pago {
     }
 
     public double pagoTotal() {
-        double pago=0.0;
+        double pago = 0.0;
         pago = cuota.getMontoCuota() + calcularMora();
         return pago;
     }

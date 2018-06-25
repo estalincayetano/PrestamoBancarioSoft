@@ -13,7 +13,6 @@ public class FormMenu extends javax.swing.JFrame {
         setExtendedState(MAXIMIZED_BOTH);
         initComponents();
         setLocationRelativeTo(this);
-
     }
 
     private void asignarLookandfeel() {
@@ -47,31 +46,28 @@ public class FormMenu extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        menuAyuda = new javax.swing.JCheckBoxMenuItem();
-        Salir = new javax.swing.JCheckBoxMenuItem();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        menuBancoSoft = new javax.swing.JMenu();
+        elementoAyuda = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem6 = new javax.swing.JCheckBoxMenuItem();
+        elementoSalir = new javax.swing.JCheckBoxMenuItem();
         menuCliente = new javax.swing.JMenu();
         GestionarCliente = new javax.swing.JCheckBoxMenuItem();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        jCheckBoxMenuItem5 = new javax.swing.JCheckBoxMenuItem();
         menuPrestamos = new javax.swing.JMenu();
         GestionarPrestamos = new javax.swing.JCheckBoxMenuItem();
         jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
-        jSeparator4 = new javax.swing.JPopupMenu.Separator();
         menuIngresos = new javax.swing.JMenu();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
-        jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        jCheckBoxMenuItem8 = new javax.swing.JCheckBoxMenuItem();
         menuReportes = new javax.swing.JMenu();
-        jSeparator6 = new javax.swing.JPopupMenu.Separator();
         menuSeguridad = new javax.swing.JMenu();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jCheckBoxMenuItem3 = new javax.swing.JCheckBoxMenuItem();
         jCheckBoxMenuItem4 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem7 = new javax.swing.JCheckBoxMenuItem();
         menuSalir = new javax.swing.JMenu();
-        jSeparator7 = new javax.swing.JPopupMenu.Separator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(0, 51, 255));
+        setBackground(new java.awt.Color(255, 153, 51));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -80,39 +76,49 @@ public class FormMenu extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/fondo.jpg"))); // NOI18N
 
+        jMenuBar1.setToolTipText("");
         jMenuBar1.setAutoscrolls(true);
 
-        jMenu1.setText("Archivo");
-        jMenu1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+        menuBancoSoft.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/bank.png"))); // NOI18N
+        menuBancoSoft.setText("BancoSoft");
+        menuBancoSoft.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        menuBancoSoft.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
+                menuBancoSoftActionPerformed(evt);
             }
         });
 
-        menuAyuda.setSelected(true);
-        menuAyuda.setText("Ayuda");
-        menuAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/help.png"))); // NOI18N
-        menuAyuda.addActionListener(new java.awt.event.ActionListener() {
+        elementoAyuda.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        elementoAyuda.setSelected(true);
+        elementoAyuda.setText("Perfil");
+        elementoAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/profile.png"))); // NOI18N
+        elementoAyuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuAyudaActionPerformed(evt);
+                elementoAyudaActionPerformed(evt);
             }
         });
-        jMenu1.add(menuAyuda);
+        menuBancoSoft.add(elementoAyuda);
 
-        Salir.setSelected(true);
-        Salir.setText("Salir");
-        Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/salir.png"))); // NOI18N
-        Salir.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBoxMenuItem6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jCheckBoxMenuItem6.setSelected(true);
+        jCheckBoxMenuItem6.setText("Configuración");
+        jCheckBoxMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/config.png"))); // NOI18N
+        menuBancoSoft.add(jCheckBoxMenuItem6);
+
+        elementoSalir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        elementoSalir.setSelected(true);
+        elementoSalir.setText("Salir");
+        elementoSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/salir.png"))); // NOI18N
+        elementoSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalirActionPerformed(evt);
+                elementoSalirActionPerformed(evt);
             }
         });
-        jMenu1.add(Salir);
-        jMenu1.add(jSeparator2);
+        menuBancoSoft.add(elementoSalir);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(menuBancoSoft);
 
+        menuCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/client.png"))); // NOI18N
         menuCliente.setText("Clientes");
         menuCliente.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
 
@@ -126,16 +132,22 @@ public class FormMenu extends javax.swing.JFrame {
             }
         });
         menuCliente.add(GestionarCliente);
-        menuCliente.add(jSeparator3);
+
+        jCheckBoxMenuItem5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jCheckBoxMenuItem5.setSelected(true);
+        jCheckBoxMenuItem5.setText("Listar Clientes");
+        jCheckBoxMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/list.png"))); // NOI18N
+        menuCliente.add(jCheckBoxMenuItem5);
 
         jMenuBar1.add(menuCliente);
 
+        menuPrestamos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/recordmanagement.png"))); // NOI18N
         menuPrestamos.setText("Prestamos");
         menuPrestamos.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
 
         GestionarPrestamos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         GestionarPrestamos.setSelected(true);
-        GestionarPrestamos.setText("Realizar Prestamo");
+        GestionarPrestamos.setText("Registrar Prestamo");
         GestionarPrestamos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/lendmoney.png"))); // NOI18N
         GestionarPrestamos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,23 +159,23 @@ public class FormMenu extends javax.swing.JFrame {
         jCheckBoxMenuItem2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jCheckBoxMenuItem2.setSelected(true);
         jCheckBoxMenuItem2.setText("Prestamos Realizados");
-        jCheckBoxMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/recordmanagement.png"))); // NOI18N
+        jCheckBoxMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/list.png"))); // NOI18N
         jCheckBoxMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxMenuItem2ActionPerformed(evt);
             }
         });
         menuPrestamos.add(jCheckBoxMenuItem2);
-        menuPrestamos.add(jSeparator4);
 
         jMenuBar1.add(menuPrestamos);
 
+        menuIngresos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/search.png"))); // NOI18N
         menuIngresos.setText("Ingresos");
         menuIngresos.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
 
         jCheckBoxMenuItem1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText("Pagar Prestamo");
+        jCheckBoxMenuItem1.setText("Registrar Pago");
         jCheckBoxMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/card.png"))); // NOI18N
         jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,19 +183,23 @@ public class FormMenu extends javax.swing.JFrame {
             }
         });
         menuIngresos.add(jCheckBoxMenuItem1);
-        menuIngresos.add(jSeparator5);
+
+        jCheckBoxMenuItem8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jCheckBoxMenuItem8.setSelected(true);
+        jCheckBoxMenuItem8.setText("Listar Pagos");
+        jCheckBoxMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/list.png"))); // NOI18N
+        menuIngresos.add(jCheckBoxMenuItem8);
 
         jMenuBar1.add(menuIngresos);
 
+        menuReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/edit.png"))); // NOI18N
         menuReportes.setText("Reportes ");
         menuReportes.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        menuReportes.add(jSeparator6);
-
         jMenuBar1.add(menuReportes);
 
+        menuSeguridad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/userupdate.png"))); // NOI18N
         menuSeguridad.setText("Seguridad");
         menuSeguridad.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        menuSeguridad.add(jSeparator1);
 
         jCheckBoxMenuItem3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jCheckBoxMenuItem3.setSelected(true);
@@ -207,8 +223,15 @@ public class FormMenu extends javax.swing.JFrame {
         });
         menuSeguridad.add(jCheckBoxMenuItem4);
 
+        jCheckBoxMenuItem7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jCheckBoxMenuItem7.setSelected(true);
+        jCheckBoxMenuItem7.setText("Listar Usuarios");
+        jCheckBoxMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/list.png"))); // NOI18N
+        menuSeguridad.add(jCheckBoxMenuItem7);
+
         jMenuBar1.add(menuSeguridad);
 
+        menuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/salir.png"))); // NOI18N
         menuSalir.setText("Salir");
         menuSalir.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         menuSalir.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -222,8 +245,6 @@ public class FormMenu extends javax.swing.JFrame {
                 menuSalirActionPerformed(evt);
             }
         });
-        menuSalir.add(jSeparator7);
-
         jMenuBar1.add(menuSalir);
 
         setJMenuBar(jMenuBar1);
@@ -232,11 +253,11 @@ public class FormMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 752, Short.MAX_VALUE)
         );
 
         pack();
@@ -253,21 +274,22 @@ public class FormMenu extends javax.swing.JFrame {
         formDatosCliente.setVisible(true);
     }//GEN-LAST:event_GestionarClienteActionPerformed
 
-    private void menuAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAyudaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuAyudaActionPerformed
+    private void elementoAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_elementoAyudaActionPerformed
+        FormPerfilUsuario formPerfilUsuario= new FormPerfilUsuario(this, true);
+        formPerfilUsuario.setVisible(true);
+    }//GEN-LAST:event_elementoAyudaActionPerformed
 
-    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+    private void elementoSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_elementoSalirActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_SalirActionPerformed
+    }//GEN-LAST:event_elementoSalirActionPerformed
 
     private void menuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_menuSalirActionPerformed
 
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+    private void menuBancoSoftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBancoSoftActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu1ActionPerformed
+    }//GEN-LAST:event_menuBancoSoftActionPerformed
 
     private void menuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSalirMouseClicked
         System.exit(0);
@@ -279,7 +301,7 @@ public class FormMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxMenuItem2ActionPerformed
 
     private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
-        formRegistrarPagos registrarPagos = new formRegistrarPagos(this, true);
+        FormRegistrarPagos registrarPagos = new FormRegistrarPagos(this, true);
         registrarPagos.setVisible(true);
     }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
 
@@ -294,19 +316,18 @@ public class FormMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxMenuItem3ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        /*   Usuario user = FormInciarSeccion.usuario;
-        
-         if (user.getTipo().equals("Analista")) {
-         menuIngresos.setEnabled(false);
-         menuSeguridad.setEnabled(false);
-         menuReportes.setEnabled(false);
-         } else if (user.getTipo().equals("Cajero(a)")) {
-         menuCliente.setEnabled(false);
-         menuPrestamos.setEnabled(false);
-         menuSeguridad.setEnabled(false);
-         menuReportes.setEnabled(false);
-         }
-         */
+        Usuario user = FormInciarSeccion.usuario;
+        if (user.getTipo().equals("Analista")) {
+            menuIngresos.setEnabled(false);
+            menuSeguridad.setEnabled(false);
+            menuReportes.setEnabled(false);
+        } else if (user.getTipo().equals("Cajero(a)")) {
+            menuCliente.setEnabled(false);
+            menuPrestamos.setEnabled(false);
+            menuSeguridad.setEnabled(false);
+            menuReportes.setEnabled(false);
+        }
+
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -316,22 +337,19 @@ public class FormMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBoxMenuItem GestionarCliente;
     private javax.swing.JCheckBoxMenuItem GestionarPrestamos;
-    private javax.swing.JCheckBoxMenuItem Salir;
+    private javax.swing.JCheckBoxMenuItem elementoAyuda;
+    private javax.swing.JCheckBoxMenuItem elementoSalir;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem3;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem4;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem5;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem6;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem7;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem8;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JPopupMenu.Separator jSeparator3;
-    private javax.swing.JPopupMenu.Separator jSeparator4;
-    private javax.swing.JPopupMenu.Separator jSeparator5;
-    private javax.swing.JPopupMenu.Separator jSeparator6;
-    private javax.swing.JPopupMenu.Separator jSeparator7;
-    private javax.swing.JCheckBoxMenuItem menuAyuda;
+    private javax.swing.JMenu menuBancoSoft;
     private javax.swing.JMenu menuCliente;
     private javax.swing.JMenu menuIngresos;
     private javax.swing.JMenu menuPrestamos;

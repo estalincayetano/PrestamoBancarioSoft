@@ -24,14 +24,14 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
     }
 
     void textos(boolean verdad) {
-        txtNombre.setEditable(verdad);
-        cboTipo.setEnabled(verdad);
+        txtUsuario.setEditable(verdad);
+      
     }
 
     public void limpiar() {
         txtDNI.setText("");
-        txtNombre.setText("");
-        cboTipo.setSelectedIndex(0);
+        txtUsuario.setText("");
+        txtTipo.setText("");
     }
 
     public void buscar() {
@@ -45,15 +45,15 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
                 GestionarUsuarioServicio gestionarUsuarioServicio = new GestionarUsuarioServicio();
                 usuario = gestionarUsuarioServicio.buscarUsuario(dni);
                 if (usuario != null) {
-                    txtNombre.setText(usuario.getNombre());
-                    cboTipo.setSelectedItem(usuario.getTipo());
+                    txtUsuario.setText(usuario.getUser());
+                    txtTipo.setText(usuario.getTipo());
                     textos(true);
                 } else {
                     Mensaje.mostrarError(this, "Usuario no se encuentra registrado.");
                     limpiar();
                     txtDNI.requestFocusInWindow();
                 }
-                txtNombre.setEditable(false);
+                txtUsuario.setEditable(true);
             } catch (Exception e) {
                 Mensaje.mostrarError(this, e.getMessage());
             }
@@ -71,13 +71,15 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
         txtDNI = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        cboTipo = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        txtTipo = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 166, 184));
 
@@ -105,16 +107,13 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
         });
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel3.setText("Nombre:");
+        jLabel3.setText("Usuario");
 
-        txtNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtNombre.setEnabled(false);
+        txtUsuario.setBackground(new java.awt.Color(102, 255, 204));
+        txtUsuario.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel4.setText("Tipo:");
-
-        cboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador(a)", "Analista", "Cajero(a)" }));
-        cboTipo.setEnabled(false);
 
         jButton1.setBackground(new java.awt.Color(102, 255, 204));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/update.png"))); // NOI18N
@@ -134,6 +133,13 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
             }
         });
 
+        txtTipo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtTipo.setEnabled(false);
+
+        jButton3.setBackground(new java.awt.Color(102, 255, 204));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/delete.png"))); // NOI18N
+        jButton3.setText("Eliminar");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -141,17 +147,16 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                                .addComponent(txtDNI, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                            .addComponent(txtDNI)
+                            .addComponent(jLabel4)
+                            .addComponent(txtTipo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -159,9 +164,11 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 29, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -182,16 +189,19 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -221,7 +231,7 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        usuario.setTipo(cboTipo.getSelectedItem().toString());
+        usuario.setUser(txtUsuario.getText());
         try {
             GestionarUsuarioServicio gestionarUsuarioServicio = new GestionarUsuarioServicio();
             int registros_afectados = gestionarUsuarioServicio.modificarUsuario(usuario);
@@ -283,9 +293,9 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JComboBox cboTipo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -293,6 +303,7 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField txtDNI;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTipo;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

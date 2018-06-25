@@ -10,9 +10,11 @@ import bancosoft.capa1_presentacion.util.HelpersFecha;
 import bancosoft.capa1_presentacion.util.Mensaje;
 import bancosoft.capa2_aplicacion.GestionarClienteServicio;
 import bancosoft.capa2_aplicacion.RegistrarPrestamoServicio;
+import bancosoft.capa3_dominio.entidades.Analista;
 import bancosoft.capa3_dominio.entidades.Cliente;
 import bancosoft.capa3_dominio.entidades.Cuota;
 import bancosoft.capa3_dominio.entidades.Prestamo;
+import bancosoft.capa3_dominio.entidades.Usuario;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,6 +33,7 @@ import mastersoft.tabladatos.Tabla;
  */
 public class FormRegistrarPrestamo extends javax.swing.JDialog {
 
+    Usuario user = FormInciarSeccion.usuario;
     Date fecha;
     Cliente cliente;
     Prestamo prestamo;
@@ -44,6 +47,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         this.desabilitar();
         fecha = java.sql.Date.valueOf(String.format("%1$tY-%1$tm-%1$te", new java.util.Date()));;
         txtFecha.setText("" + fecha);
+        txtAnalista.setText(user.getNombre().toUpperCase());
     }
 
     public void habilitar() {
@@ -152,6 +156,8 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         txtFecha = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtNPrestamos = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtAnalista = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         txtInteres = new javax.swing.JTextField();
@@ -257,6 +263,13 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         txtNPrestamos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtNPrestamos.setEnabled(false);
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel12.setText("Analista:");
+
+        txtAnalista.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtAnalista.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtAnalista.setEnabled(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -283,10 +296,14 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(64, 64, 64)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
                 .addGap(27, 27, 27)
-                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                    .addComponent(txtAnalista))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,15 +322,23 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(jLabel1)))
-                .addGap(13, 13, 13)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jLabel3))
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jLabel3))
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(txtAnalista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 166, 184));
@@ -388,7 +413,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
                 .addComponent(txtInteres, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel11)
@@ -931,6 +956,9 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (cliente != null && prestamo != null) {
             prestamo.setCliente(cliente);
+            Analista analista = new Analista();
+            analista.setIdanalista(user.getUsuarioid());
+            prestamo.setAnalista(analista);
             prestamo.setNota(txtNota.getText());
             try {
                 RegistrarPrestamoServicio gestionarPrestamoServicio = new RegistrarPrestamoServicio();
@@ -1038,6 +1066,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -1059,6 +1088,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tablaCuotas;
+    private javax.swing.JTextField txtAnalista;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCapital;
     private javax.swing.JTextField txtCuotaImporte;

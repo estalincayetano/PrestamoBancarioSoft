@@ -1,4 +1,3 @@
-
 package bancosoft.capa4_persistencia.daoPostgreSql;
 
 import bancosoft.capa1_presentacion.util.HelpersFecha;
@@ -32,8 +31,8 @@ public class PrestamoDAOPostgre implements IPrestamoDAO {
     public int ingresar(Prestamo prestamo) throws SQLException {
         int registros_afectados;
         try {
-            String sentenciaSQL = "insert into prestamo (idcliente, monto, interes, numerocuotas, fechainicio, estado, nota)"
-                    + "values ( ?, ?, ?, ?, ?, ?, ?)";
+            String sentenciaSQL = "insert into prestamo (idcliente, monto, interes, numerocuotas, fechainicio, estado, nota, idanalista)"
+                    + "values ( ?, ?, ?, ?, ?, ?, ?,?)";
             PreparedStatement sentecia = gestorJDBC.prepararSentencia(sentenciaSQL);
             sentecia.setInt(1, prestamo.getCliente().getClienteid());
             sentecia.setDouble(2, prestamo.getMonto());
@@ -42,6 +41,7 @@ public class PrestamoDAOPostgre implements IPrestamoDAO {
             sentecia.setDate(5, prestamo.getFechaInicio());
             sentecia.setString(6, prestamo.getEstado());
             sentecia.setString(7, prestamo.getNota());
+            sentecia.setInt(8, prestamo.getAnalista().getIdanalista());
             registros_afectados = sentecia.executeUpdate();
             if (registros_afectados != 1) {
                 throw new SQLException("No se pudo registrar el Prestamo.\n"
@@ -78,11 +78,11 @@ public class PrestamoDAOPostgre implements IPrestamoDAO {
     }
 
     @Override
-    public List<Prestamo> buscarPorEstado(String estado) throws SQLException {
+    public List<Prestamo> buscarPorEstado(String estado, int idanalista) throws SQLException {
         List<Prestamo> prestamos = new ArrayList<>();
         Prestamo prestamo;
         String sentenciaSQL = "select idprestamo,monto, interes, numerocuotas, fechainicio, estado "
-                + " from prestamo where estado like '%" + estado + "%'";
+                + " from prestamo where estado like '%" + estado + "%' and idanalista= " + idanalista;
         ResultSet resultado = gestorJDBC.ejecutarConsulta(sentenciaSQL);
         while (resultado.next()) {
             prestamo = new Prestamo();
@@ -129,7 +129,7 @@ public class PrestamoDAOPostgre implements IPrestamoDAO {
         PreparedStatement sentencia = gestorJDBC.prepararSentencia(sentenciaSQL);
         sentencia.setString(1, "CANCELADO");
         sentencia.setInt(2, idprestamo);
-        registros_afectados=sentencia.executeUpdate();
+        registros_afectados = sentencia.executeUpdate();
         return registros_afectados;
     }
 

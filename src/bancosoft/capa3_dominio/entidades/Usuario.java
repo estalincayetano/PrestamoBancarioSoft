@@ -14,6 +14,7 @@ public class Usuario {
     private int usuarioid;
     private String dni;
     private String nombre;
+    private String user ;
     private String password;
     private String tipo;
     public static final int LONGITUD_DNI = 8;
@@ -23,6 +24,14 @@ public class Usuario {
 
     public int getUsuarioid() {
         return usuarioid;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getDni() {
