@@ -7,15 +7,15 @@ import bancosoft.capa3_dominio.entidades.Usuario;
  * @author estal
  */
 public class FormMenu extends javax.swing.JFrame {
-    
+
     public FormMenu() {
         asignarLookandfeel();
         setExtendedState(MAXIMIZED_BOTH);
         initComponents();
         setLocationRelativeTo(this);
-        
+
     }
-    
+
     private void asignarLookandfeel() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -40,11 +40,12 @@ public class FormMenu extends javax.swing.JFrame {
         }
         //</editor-fold>
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuAyuda = new javax.swing.JCheckBoxMenuItem();
@@ -70,13 +71,17 @@ public class FormMenu extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 51, 255));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/archive.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/fondo.jpg"))); // NOI18N
+
+        jMenuBar1.setAutoscrolls(true);
+
         jMenu1.setText("Archivo");
         jMenu1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +102,7 @@ public class FormMenu extends javax.swing.JFrame {
 
         Salir.setSelected(true);
         Salir.setText("Salir");
+        Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/salir.png"))); // NOI18N
         Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SalirActionPerformed(evt);
@@ -107,13 +113,13 @@ public class FormMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        menuCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/client (2).png"))); // NOI18N
         menuCliente.setText("Clientes");
         menuCliente.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
 
         GestionarCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         GestionarCliente.setSelected(true);
         GestionarCliente.setText("Gestionar Cliente");
+        GestionarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/client.png"))); // NOI18N
         GestionarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GestionarClienteActionPerformed(evt);
@@ -124,7 +130,6 @@ public class FormMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(menuCliente);
 
-        menuPrestamos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/prestamo.png"))); // NOI18N
         menuPrestamos.setText("Prestamos");
         menuPrestamos.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
 
@@ -153,7 +158,6 @@ public class FormMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(menuPrestamos);
 
-        menuIngresos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/records.png"))); // NOI18N
         menuIngresos.setText("Ingresos");
         menuIngresos.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
 
@@ -171,14 +175,12 @@ public class FormMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(menuIngresos);
 
-        menuReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/analitica (1).png"))); // NOI18N
         menuReportes.setText("Reportes ");
         menuReportes.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         menuReportes.add(jSeparator6);
 
         jMenuBar1.add(menuReportes);
 
-        menuSeguridad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/security.png"))); // NOI18N
         menuSeguridad.setText("Seguridad");
         menuSeguridad.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         menuSeguridad.add(jSeparator1);
@@ -186,6 +188,7 @@ public class FormMenu extends javax.swing.JFrame {
         jCheckBoxMenuItem3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jCheckBoxMenuItem3.setSelected(true);
         jCheckBoxMenuItem3.setText("Gestionar Usuarios");
+        jCheckBoxMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/users.png"))); // NOI18N
         jCheckBoxMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxMenuItem3ActionPerformed(evt);
@@ -196,6 +199,7 @@ public class FormMenu extends javax.swing.JFrame {
         jCheckBoxMenuItem4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jCheckBoxMenuItem4.setSelected(true);
         jCheckBoxMenuItem4.setText("Gestionar Permisos");
+        jCheckBoxMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/userupdate.png"))); // NOI18N
         jCheckBoxMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxMenuItem4ActionPerformed(evt);
@@ -205,7 +209,6 @@ public class FormMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(menuSeguridad);
 
-        menuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/salir.png"))); // NOI18N
         menuSalir.setText("Salir");
         menuSalir.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         menuSalir.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -229,11 +232,11 @@ public class FormMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 863, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -291,19 +294,19 @@ public class FormMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxMenuItem3ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-         Usuario user = FormInciarSeccion.usuario;
+        /*   Usuario user = FormInciarSeccion.usuario;
         
-        if (user.getTipo().equals("Analista")) {
-            menuIngresos.setEnabled(false);
-            menuSeguridad.setEnabled(false);
-            menuReportes.setEnabled(false);
-        } else if (user.getTipo().equals("Cajero(a)")) {
-            menuCliente.setEnabled(false);
-            menuPrestamos.setEnabled(false);
-            menuSeguridad.setEnabled(false);
-            menuReportes.setEnabled(false);
-        }
-
+         if (user.getTipo().equals("Analista")) {
+         menuIngresos.setEnabled(false);
+         menuSeguridad.setEnabled(false);
+         menuReportes.setEnabled(false);
+         } else if (user.getTipo().equals("Cajero(a)")) {
+         menuCliente.setEnabled(false);
+         menuPrestamos.setEnabled(false);
+         menuSeguridad.setEnabled(false);
+         menuReportes.setEnabled(false);
+         }
+         */
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -318,6 +321,7 @@ public class FormMenu extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem3;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;

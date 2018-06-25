@@ -213,9 +213,9 @@ public class formRegistrarPagos extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro De Pagos");
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 166, 184));
 
-        jPanel2.setBackground(new java.awt.Color(255, 204, 102));
+        jPanel2.setBackground(new java.awt.Color(0, 166, 184));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Prestamos Pendientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14))); // NOI18N
 
         tablaPrestamos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -256,7 +256,7 @@ public class formRegistrarPagos extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("REGISTRAR PAGOS DE CUOTAS DE PRESTAMOS");
 
-        jPanel3.setBackground(new java.awt.Color(255, 204, 102));
+        jPanel3.setBackground(new java.awt.Color(0, 166, 184));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -333,7 +333,7 @@ public class formRegistrarPagos extends javax.swing.JDialog {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jPanel4.setBackground(new java.awt.Color(255, 204, 102));
+        jPanel4.setBackground(new java.awt.Color(0, 166, 184));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cuotas Pendientes de Pago", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14))); // NOI18N
 
         tablaCuotas.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -369,7 +369,7 @@ public class formRegistrarPagos extends javax.swing.JDialog {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
         );
 
-        jPanel5.setBackground(new java.awt.Color(255, 204, 102));
+        jPanel5.setBackground(new java.awt.Color(0, 166, 184));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registro de Pago", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         btnPagar.setBackground(new java.awt.Color(255, 255, 255));

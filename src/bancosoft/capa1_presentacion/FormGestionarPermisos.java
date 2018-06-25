@@ -28,10 +28,18 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
         cboTipo.setEnabled(verdad);
     }
 
+    public void limpiar() {
+        txtDNI.setText("");
+        txtNombre.setText("");
+        cboTipo.setSelectedIndex(0);
+    }
+
     public void buscar() {
         String dni = txtDNI.getText();
-        if (txtDNI.getText().equals("") || txtDNI.getText().length()!= 8) {
+        if (txtDNI.getText().equals("") || txtDNI.getText().length() != 8) {
             Mensaje.mostrarError(this, "Ingrese un N° de DNI Valido");
+            limpiar();
+            txtDNI.requestFocusInWindow();
         } else {
             try {
                 GestionarUsuarioServicio gestionarUsuarioServicio = new GestionarUsuarioServicio();
@@ -42,6 +50,8 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
                     textos(true);
                 } else {
                     Mensaje.mostrarError(this, "Usuario no se encuentra registrado.");
+                    limpiar();
+                    txtDNI.requestFocusInWindow();
                 }
                 txtNombre.setEditable(false);
             } catch (Exception e) {
@@ -69,6 +79,8 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(0, 166, 184));
+
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("MODIFICAR PERMISOS DE USUARIO");
@@ -76,6 +88,7 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel2.setText("Dni:");
 
+        txtDNI.setBackground(new java.awt.Color(102, 255, 204));
         txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDNIKeyTyped(evt);
@@ -103,6 +116,7 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
         cboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador(a)", "Analista", "Cajero(a)" }));
         cboTipo.setEnabled(false);
 
+        jButton1.setBackground(new java.awt.Color(102, 255, 204));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/update.png"))); // NOI18N
         jButton1.setText("Acutalizar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -111,6 +125,7 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(102, 255, 204));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/cancel.png"))); // NOI18N
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -183,11 +198,11 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -212,7 +227,8 @@ public class FormGestionarPermisos extends javax.swing.JDialog {
             int registros_afectados = gestionarUsuarioServicio.modificarUsuario(usuario);
             if (registros_afectados == 1) {
                 Mensaje.mostrarAfirmacion(this, "Se actualizo.");
-                this.dispose();
+                limpiar();
+                txtDNI.requestFocusInWindow();
             }
         } catch (Exception e) {
             Mensaje.mostrarError(this, e.getMessage());
