@@ -5,6 +5,7 @@
  */
 package bancosoft.capa1_presentacion;
 
+import bancosoft.capa1_presentacion.util.Mensaje;
 import bancosoft.capa2_aplicacion.GestionarUsuarioServicio;
 import bancosoft.capa3_dominio.entidades.Usuario;
 import javax.swing.JOptionPane;
@@ -31,7 +32,7 @@ public class FormInciarSeccion extends javax.swing.JDialog {
             if (usuario != null) {
                 String mensaje = "Bienvenido " + usuario.getNombre().toUpperCase() + ".";
                 this.dispose();
-                JOptionPane.showMessageDialog(rootPane, mensaje, "Welcome", JOptionPane.INFORMATION_MESSAGE);
+                Mensaje.mostrarInformacion(this, mensaje);
                 formMenu.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Usuario y/o contraseña INCORRECTA!");

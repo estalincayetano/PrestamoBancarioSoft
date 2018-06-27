@@ -1,5 +1,6 @@
 package bancosoft.capa3_dominio.entidades;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
@@ -128,7 +129,7 @@ public class Prestamo {
     }
 
     public boolean validarInteres() {
-        if (interes >= 5) {
+        if (interes >= 10 && interes < 20) {
             return true;
         } else {
             return false;
@@ -150,16 +151,16 @@ public class Prestamo {
     }
     /*Metodo para calcular la taza de interes diaria de la cuota*/
 
-    public double calcularTazaDiaria() {
-        double inte = interes / 100;
-        float diasf = 1 / 360f;
+      public double calcularTazaDiaria() {
+        double inte = interes / 100d;
+        double diasf = 1 / 360d;
         return (Math.pow((1 + inte), diasf) - 1) * 100;
 
     }
     /*Metodo para calcular la taza de interes mensuales que se aplicara a cada cuota*/
 
     public double calcularTazaMensual() {
-        return (Math.pow((1 + (calcularTazaDiaria() / 100)), 30) - 1) * 100;
+        return (Math.pow((1 + (calcularTazaDiaria() / 100d)), 31) - 1) * 100;
     }
     /*Metodo para calcular el interes mensual de la cuota del prestamo*/
 
@@ -171,7 +172,7 @@ public class Prestamo {
     /*Metodo para calcular el seguro de desgraven*/
 
     public double calcularDesgraven() {
-        return monto * ((0.00075) * 1);
+        return monto * ((0.00075) * (31 / 30d));
     }
 
 

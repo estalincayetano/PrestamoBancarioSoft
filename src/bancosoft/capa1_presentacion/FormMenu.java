@@ -135,7 +135,7 @@ public class FormMenu extends javax.swing.JFrame {
 
         jCheckBoxMenuItem5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jCheckBoxMenuItem5.setSelected(true);
-        jCheckBoxMenuItem5.setText("Listar Clientes");
+        jCheckBoxMenuItem5.setText("Ver Cartera de Clientes");
         jCheckBoxMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/list.png"))); // NOI18N
         menuCliente.add(jCheckBoxMenuItem5);
 

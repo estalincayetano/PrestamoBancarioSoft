@@ -1,4 +1,3 @@
-
 package bancosoft.capa1_presentacion.util;
 
 import javax.swing.JDialog;
@@ -30,7 +29,8 @@ public class Mensaje {
     private static final String advertenciaDeExceso = "El cliente tiene el maximo de prestamos.\n"
             + "No califica para adquirir uno mas.";
     private static final String preguntadePermanecia = "Desea Realizar Otra Transaccion?";
-    private static final String preguntaConfirmacion="Confirme la Transaccion";
+    private static final String preguntaConfirmacion = "Confirme la Transaccion";
+
     /**
      * No se pudo realizar la consulta, intente de nuevo o consulte con el
      * Administrador.
@@ -47,10 +47,11 @@ public class Mensaje {
      * @param dialogo
      * @return
      */
-       public static boolean mostrarPreguntaDeConfirmacion(JDialog dialogo) {
+    public static boolean mostrarPreguntaDeConfirmacion(JDialog dialogo) {
         int respuesta = JOptionPane.showConfirmDialog(dialogo, preguntaConfirmacion, "BancoSoft: Pregunta", JOptionPane.OK_CANCEL_OPTION);
         return (respuesta == JOptionPane.OK_OPTION);
     }
+
     public static void mostrarAlertaExceso(JDialog dialog) {
         JOptionPane.showMessageDialog(dialog, advertenciaDeExceso, "BancoSoft: Advertencia", JOptionPane.WARNING_MESSAGE);
     }
@@ -180,6 +181,10 @@ public class Mensaje {
      */
     public static void mostrarError(JDialog dialogo, String mensaje) {
         JOptionPane.showMessageDialog(dialogo, mensaje, "BancoSoft: Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public static void mostrarInformacion(JDialog dialogo, String mensaje) {
+        JOptionPane.showMessageDialog(dialogo, mensaje, "BancoSoft: Informacion", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static void mostrarFilaNoSeleccionada(JDialog dialogo) {

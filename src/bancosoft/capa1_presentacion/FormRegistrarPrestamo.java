@@ -111,11 +111,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
     }
 
     public void limpiarTodo() {
-        txtDNI.setText("");
-        txtNombre.setText("");
-        txtApellido.setText("");
-        txtMonto.setText("");
-        txtInteres.setText("");
+        limpiarTextos();
         txtCuotas.setText("");
         txtValorCuota.setText("");
         txtCapital.setText("");
@@ -158,6 +154,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         txtNPrestamos = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txtAnalista = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         txtInteres = new javax.swing.JTextField();
@@ -169,7 +166,8 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         jLabel11 = new javax.swing.JLabel();
         txtValorCuota = new javax.swing.JTextField();
         btnCronograma = new javax.swing.JButton();
-        jLabel13 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaCuotas = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         txtCapital = new javax.swing.JTextField();
         txtCuotaImporte = new javax.swing.JTextField();
@@ -177,29 +175,23 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         txtTotalPrestamo = new javax.swing.JTextField();
         txtInteresTotal = new javax.swing.JTextField();
         txtSeguro = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        txtNota = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         txtTotalCredito = new javax.swing.JTextField();
+        txtNota = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
         btnImprimir = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
         jPanel5 = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaCuotas = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        btnGuardar1 = new javax.swing.JButton();
-        btnCancelar1 = new javax.swing.JButton();
-        btnNuevo1 = new javax.swing.JButton();
-        btnSalir1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro De Prestamos");
         setIconImage(null);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 166, 184));
         jPanel1.setAutoscrolls(true);
@@ -270,6 +262,9 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         txtAnalista.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtAnalista.setEnabled(false);
 
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -295,7 +290,9 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(64, 64, 64)
+                .addGap(38, 38, 38)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
@@ -308,37 +305,40 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBuscar)
-                            .addComponent(jLabel2)
-                            .addComponent(txtNPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel1)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jLabel1))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnBuscar)
+                                    .addComponent(jLabel2)
+                                    .addComponent(txtNPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(jLabel3))
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel4)
-                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(txtAnalista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                                .addGap(13, 13, 13)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(5, 5, 5)
+                                        .addComponent(jLabel3))
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel4)
+                                        .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel12)
+                                    .addComponent(txtAnalista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 11, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 166, 184));
@@ -394,81 +394,40 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(jLabel8)
-                .addGap(16, 16, 16)
-                .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel6)
-                .addGap(10, 10, 10)
-                .addComponent(txtInteres, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtValorCuota, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnCronograma))
-                .addGap(51, 51, 51))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel8))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(txtCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnCronograma)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtInteres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtValorCuota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        tablaCuotas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tablaCuotas.setForeground(new java.awt.Color(0, 0, 204));
+        tablaCuotas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        txtInteres.getAccessibleContext().setAccessibleParent(this);
-        txtMonto.getAccessibleContext().setAccessibleParent(this);
-        txtCuotas.getAccessibleContext().setAccessibleParent(this);
+            },
+            new String [] {
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel13.setText("TOTALES");
+            }
+        ));
+        tablaCuotas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tablaCuotas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tablaCuotas.setName(""); // NOI18N
+        tablaCuotas.setSelectionBackground(new java.awt.Color(204, 255, 51));
+        tablaCuotas.setSelectionForeground(new java.awt.Color(255, 0, 51));
+        tablaCuotas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaCuotasMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaCuotas);
+        tablaCuotas.getAccessibleContext().setAccessibleParent(this);
 
         jPanel4.setBackground(new java.awt.Color(0, 166, 184));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         txtCapital.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        txtCapital.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCapital.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtCapital.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtCapital.setEnabled(false);
 
         txtCuotaImporte.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        txtCuotaImporte.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtCuotaImporte.setDisabledTextColor(new java.awt.Color(0, 153, 204));
+        txtCuotaImporte.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtCuotaImporte.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtCuotaImporte.setEnabled(false);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -476,7 +435,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
 
         txtTotalPrestamo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtTotalPrestamo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtTotalPrestamo.setDisabledTextColor(new java.awt.Color(0, 0, 102));
+        txtTotalPrestamo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtTotalPrestamo.setEnabled(false);
         txtTotalPrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -485,14 +444,14 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         });
 
         txtInteresTotal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        txtInteresTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtInteresTotal.setDisabledTextColor(new java.awt.Color(255, 0, 51));
+        txtInteresTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtInteresTotal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtInteresTotal.setEnabled(false);
         txtInteresTotal.setSelectionColor(new java.awt.Color(255, 0, 51));
 
         txtSeguro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        txtSeguro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtSeguro.setDisabledTextColor(new java.awt.Color(255, 102, 0));
+        txtSeguro.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtSeguro.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtSeguro.setEnabled(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -500,18 +459,18 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(90, Short.MAX_VALUE)
-                .addComponent(txtCapital, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtInteresTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCuotaImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(65, Short.MAX_VALUE)
+                .addComponent(txtCapital, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(txtInteresTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(txtCuotaImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(txtSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtTotalPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtTotalPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -528,8 +487,8 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel15.setText("Nota");
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setText("TOTALES");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel16.setText("Total Credito");
@@ -539,12 +498,125 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         txtTotalCredito.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtTotalCredito.setEnabled(false);
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel15.setText("Nota");
+
         btnImprimir.setBackground(new java.awt.Color(102, 102, 255));
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/print.png"))); // NOI18N
         btnImprimir.setText("Imprimir");
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel8)
+                        .addGap(16, 16, 16)
+                        .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel6)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtInteres, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCronograma))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(667, 667, 667)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtValorCuota, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addComponent(jScrollPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 74, Short.MAX_VALUE)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel15)
+                .addGap(16, 16, 16)
+                .addComponent(txtNota, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel16)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTotalCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel8))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(txtCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtInteres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnCronograma)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtValorCuota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel13)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTotalCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel15))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                            .addGap(7, 7, 7)
+                            .addComponent(jLabel16)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtNota, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        txtInteres.getAccessibleContext().setAccessibleParent(this);
+        txtMonto.getAccessibleContext().setAccessibleParent(this);
+        txtCuotas.getAccessibleContext().setAccessibleParent(this);
+        jPanel4.getAccessibleContext().setAccessibleParent(this);
+
         jPanel5.setBackground(new java.awt.Color(0, 166, 184));
-        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.darkGray, new java.awt.Color(0, 0, 0)));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         btnGuardar.setBackground(new java.awt.Color(51, 204, 0));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/guardar.png"))); // NOI18N
@@ -586,161 +658,44 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(88, 88, 88)
                 .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
+                .addGap(88, 88, 88)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addGap(28, 28, 28))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        tablaCuotas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        tablaCuotas.setForeground(new java.awt.Color(0, 0, 204));
-        tablaCuotas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        tablaCuotas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tablaCuotas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tablaCuotas.setName(""); // NOI18N
-        tablaCuotas.setSelectionBackground(new java.awt.Color(204, 255, 51));
-        tablaCuotas.setSelectionForeground(new java.awt.Color(255, 0, 51));
-        tablaCuotas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaCuotasMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tablaCuotas);
-        tablaCuotas.getAccessibleContext().setAccessibleParent(this);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("REGISTRO DE PRESTAMOS BANCARIOS");
-
-        jPanel6.setBackground(new java.awt.Color(0, 166, 184));
-        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.darkGray, new java.awt.Color(0, 0, 0)));
-
-        btnGuardar1.setBackground(new java.awt.Color(51, 204, 0));
-        btnGuardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/guardar.png"))); // NOI18N
-        btnGuardar1.setText("Guardar");
-        btnGuardar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardar1ActionPerformed(evt);
-            }
-        });
-
-        btnCancelar1.setBackground(new java.awt.Color(255, 153, 51));
-        btnCancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/cancel.png"))); // NOI18N
-        btnCancelar1.setText("Cancelar");
-        btnCancelar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelar1ActionPerformed(evt);
-            }
-        });
-
-        btnNuevo1.setBackground(new java.awt.Color(255, 255, 255));
-        btnNuevo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/new.png"))); // NOI18N
-        btnNuevo1.setText("Nuevo");
-        btnNuevo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevo1ActionPerformed(evt);
-            }
-        });
-
-        btnSalir1.setBackground(new java.awt.Color(255, 204, 51));
-        btnSalir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/salir.png"))); // NOI18N
-        btnSalir1.setText("Salir");
-        btnSalir1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(btnGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(btnNuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
-                .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 12, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel15)
-                        .addGap(16, 16, 16)
-                        .addComponent(txtNota, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(76, 76, 76)
-                                .addComponent(jLabel16)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtTotalCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -748,52 +703,24 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel10)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel13))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel15))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(txtNota, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(jLabel16))
-                            .addComponent(txtTotalCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
-                        .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jPanel2.getAccessibleContext().setAccessibleParent(this);
         jPanel3.getAccessibleContext().setAccessibleParent(this);
-        jPanel4.getAccessibleContext().setAccessibleParent(this);
         jPanel5.getAccessibleContext().setAccessibleParent(this);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 888, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -804,154 +731,20 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtTotalPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalPrestamoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTotalPrestamoActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void tablaCuotasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCuotasMouseClicked
-
-    }//GEN-LAST:event_tablaCuotasMouseClicked
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        limpiarTodo();
+        this.habilitar();
+        txtDNI.requestFocusInWindow();
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         limpiarTodo();
         this.desabilitar();// TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
-        String dni = txtDNI.getText();
-        if (txtDNI.getText().equals("")) {
-            Mensaje.mostrarError(this, "Ingrese DNI del cliente");
-            txtDNI.requestFocusInWindow();
-        } else {
-            if (txtDNI.getText().length() != 8) {
-                Mensaje.mostrarError(this, "El N° " + dni + "\n  No es un N° de DNI valido");
-                limpiarTextos();
-                txtDNI.requestFocusInWindow();
-            } else {
-                try {
-                    GestionarClienteServicio gestionarClienteServicio = new GestionarClienteServicio();
-                    cliente = gestionarClienteServicio.buscarDNI(dni);
-                    if (cliente != null) {
-                        RegistrarPrestamoServicio registrarPrestamoServicio = new RegistrarPrestamoServicio();
-                        numero_prestamos = registrarPrestamoServicio.numeroDePrestamos(dni);
-                        if (numero_prestamos == 3) {
-                            Mensaje.mostrarAlertaExceso(this);
-                            limpiarTodo();
-                            txtDNI.requestFocusInWindow();
-                        } else {
-                            txtNombre.setText(cliente.getNombre());
-                            txtApellido.setText(cliente.getApellido());
-                            txtMonto.requestFocusInWindow();
-                            txtNPrestamos.setText(String.valueOf(numero_prestamos));
-                        }
-
-                    } else {
-                        Mensaje.mostrarError(this, "El cliente no se encuentra Registrado en el sistema");
-                        limpiarTextos();
-                        txtDNI.requestFocusInWindow();
-                    }
-
-                } catch (Exception e) {
-                    Mensaje.mostrarError(this, e.getMessage());
-                }
-            }
-        }
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
-        String patron_de_entrada = "0123456789";
-        if (txtDNI.getText().length() == Cliente.LONGITUD_DNI
-                || !patron_de_entrada.contains(String.valueOf(evt.getKeyChar()))) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtDNIKeyTyped
-
-    private void txtDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyReleased
-
-    }//GEN-LAST:event_txtDNIKeyReleased
-
-    private void txtMontoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoKeyTyped
-        String patron_de_entrada = "0123456789";
-        if (txtMonto.getText().length() == Prestamo.LONGITUD_MONTO
-                || !patron_de_entrada.contains(String.valueOf(evt.getKeyChar()))) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtMontoKeyTyped
-
-    private void txtCuotasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCuotasKeyTyped
-        String patron_de_entrada = "0123456789";
-        if (txtCuotas.getText().length() == Prestamo.LONGITUD_CUOTA || !patron_de_entrada.contains(String.valueOf(evt.getKeyChar()))) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtCuotasKeyTyped
-
-    private void txtInteresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInteresKeyTyped
-        String patron_de_entrada = "0123456789.";
-        if (txtInteres.getText().length() == Prestamo.LONGITUD_INTERES || !patron_de_entrada.contains(String.valueOf(evt.getKeyChar()))) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtInteresKeyTyped
-
-    private void btnCronogramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCronogramaActionPerformed
-
-        Date fecha_next;
-        double total_capital = 0, total_interes = 0, total_cuota = 0, total = 0, total_seguro = 0;
-        if (txtMonto.getText().equals("") && txtInteres.getText().equals("") && txtCuotas.getText().equals("")) {
-            Mensaje.mostrarError(this, "Faltan Datos. No se puede Generar el Cronograma");
-            txtMonto.requestFocusInWindow();
-        } else {
-            prestamo = new Prestamo();
-            prestamo.setMonto(Double.parseDouble(txtMonto.getText()));
-            prestamo.setInteres(Double.parseDouble(txtInteres.getText()));
-            prestamo.setNumeroCuotas(Integer.parseInt(txtCuotas.getText()));
-            if (prestamo.getMonto() >= 1000 && prestamo.getInteres() >= 10 && prestamo.getNumeroCuotas() >= 6) {
-                ModeloTabla modeloTabla = (ModeloTabla) tablaCuotas.getModel();
-                modeloTabla.eliminarTotalFilas();
-                for (int i = 1; i <= prestamo.getNumeroCuotas(); i++) {
-                    Cuota cuota = new Cuota();
-                    cuota.setCapital_cuota(prestamo.calcularCapital());
-                    cuota.setInteres_cuota(prestamo.calcularInteresMensual());
-                    cuota.setSeguro(prestamo.calcularDesgraven());
-                    fecha_next = HelpersFecha.addDay(fecha, i * 31);
-                    cuota.setFechaPago(fecha_next);
-                    cuota.setMontoCuota(prestamo.calcularImporteDeCuota());
-                    prestamo.agregarCuota(cuota);
-                    Fila fila = new Fila();
-                    fila.agregarValorCelda(i);
-                    fila.agregarValorCelda(String.format("%1$te-%1$tm-%1$tY", cuota.getFechaPago()));
-                    fila.agregarValorCelda(cuota.getCapital_cuota());
-                    fila.agregarValorCelda(cuota.getInteres_cuota());
-                    fila.agregarValorCelda(prestamo.calcularImporteCuotaReferencial());
-                    fila.agregarValorCelda(cuota.getSeguro());
-                    fila.agregarValorCelda(cuota.getMontoCuota());
-                    total_capital = total_capital + prestamo.calcularCapital();
-                    total_interes = total_interes + prestamo.calcularInteresMensual();
-                    total_cuota = total_cuota + prestamo.calcularImporteCuotaReferencial();
-                    total_seguro = total_seguro + prestamo.calcularDesgraven();
-                    total = total + prestamo.calcularImporteDeCuota();
-                    modeloTabla.agregarFila(fila);
-                }
-                modeloTabla.refrescarDatos();
-                DecimalFormat formateador = new DecimalFormat("#0.00");
-                txtValorCuota.setText(String.valueOf(formateador.format(prestamo.calcularImporteDeCuota())));
-                txtCapital.setText(String.valueOf(formateador.format(total_capital)));
-                txtInteresTotal.setText(String.valueOf(formateador.format(total_interes)));
-                txtSeguro.setText(String.valueOf(formateador.format(total_seguro)));
-                txtCuotaImporte.setText(String.valueOf(formateador.format(total_cuota)));
-                txtTotalPrestamo.setText(String.valueOf(formateador.format(total)));
-                txtTotalCredito.setText(String.valueOf(formateador.format(total)));
-
-            } else {
-                Mensaje.mostrarError(this, "No se pudo generar el cronograma: \n  " + "El monto (" + prestamo.getMonto() + ") deber ser como minimo 1000 \n"
-                        + "El Interes (" + prestamo.getInteres() + ") debe ser como minimo 10% \n"
-                        + "N° de Cuotas (" + prestamo.getNumeroCuotas() + ") deben como minimo 6");
-                txtMonto.requestFocusInWindow();
-            }
-
-        }
-
-    }//GEN-LAST:event_btnCronogramaActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (cliente != null && prestamo != null) {
@@ -977,34 +770,156 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
             Mensaje.mostrarErrorDeCreacion(this);
             txtDNI.requestFocusInWindow();
         }
-
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        limpiarTodo();
-        this.habilitar();
-        txtDNI.requestFocusInWindow();
-    }//GEN-LAST:event_btnNuevoActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        dispose();
-    }//GEN-LAST:event_btnSalirActionPerformed
-
-    private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
+    private void txtTotalPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalPrestamoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardar1ActionPerformed
+    }//GEN-LAST:event_txtTotalPrestamoActionPerformed
 
-    private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelar1ActionPerformed
+    private void tablaCuotasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCuotasMouseClicked
 
-    private void btnNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevo1ActionPerformed
+    }//GEN-LAST:event_tablaCuotasMouseClicked
 
-    private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir1ActionPerformed
+    private void btnCronogramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCronogramaActionPerformed
+
+        Date fecha_next;
+        double total_capital = 0, total_interes = 0, total_cuota = 0, total = 0, total_seguro = 0;
+        if (txtMonto.getText().equals("") && txtInteres.getText().equals("") && txtCuotas.getText().equals("")) {
+            Mensaje.mostrarError(this, "Faltan Datos. No se puede Generar el Cronograma");
+            txtMonto.requestFocusInWindow();
+        } else {
+            prestamo = new Prestamo();
+            prestamo.setMonto(Double.parseDouble(txtMonto.getText()));
+            prestamo.setInteres(Double.parseDouble(txtInteres.getText()));
+            prestamo.setNumeroCuotas(Integer.parseInt(txtCuotas.getText()));
+            if (prestamo.validarMonto()==true && prestamo.validarInteres()==true && prestamo.validarCuotas()==true) {
+                ModeloTabla modeloTabla = (ModeloTabla) tablaCuotas.getModel();
+                modeloTabla.eliminarTotalFilas();
+                for (int i = 1; i <= prestamo.getNumeroCuotas(); i++) {
+                    Cuota cuota = new Cuota();
+                    cuota.setCapital_cuota(prestamo.calcularCapital());
+                    cuota.setInteres_cuota(prestamo.calcularInteresMensual());
+                    cuota.setSeguro(prestamo.calcularDesgraven());
+                    fecha_next = HelpersFecha.addDay(fecha, i * 31);
+                    cuota.setFechaPago(fecha_next);
+                    cuota.setMontoCuota(prestamo.calcularImporteDeCuota());
+                    prestamo.agregarCuota(cuota);
+                    Fila fila = new Fila();
+                    fila.agregarValorCelda(i);
+                    fila.agregarValorCelda(String.format("%1$tY-%1$tm-%1$te", cuota.getFechaPago()));
+                    fila.agregarValorCelda(cuota.getCapital_cuota());
+                    fila.agregarValorCelda(cuota.getInteres_cuota());
+                    fila.agregarValorCelda(prestamo.calcularImporteCuotaReferencial());
+                    fila.agregarValorCelda(cuota.getSeguro());
+                    fila.agregarValorCelda(cuota.getMontoCuota());
+                    total_capital = total_capital + prestamo.calcularCapital();
+                    total_interes = total_interes + prestamo.calcularInteresMensual();
+                    total_cuota = total_cuota + prestamo.calcularImporteCuotaReferencial();
+                    total_seguro = total_seguro + prestamo.calcularDesgraven();
+                    total = total + prestamo.calcularImporteDeCuota();
+                    modeloTabla.agregarFila(fila);
+                }
+                modeloTabla.refrescarDatos();
+                DecimalFormat formateador = new DecimalFormat("#0.00");
+                txtValorCuota.setText("S/. " + String.valueOf(formateador.format(prestamo.calcularImporteDeCuota())));
+                txtCapital.setText("S/. " + String.valueOf(formateador.format(total_capital)));
+                txtInteresTotal.setText("S/. " + String.valueOf(formateador.format(total_interes)));
+                txtSeguro.setText("S/. " + String.valueOf(formateador.format(total_seguro)));
+                txtCuotaImporte.setText("S/. " + String.valueOf(formateador.format(total_cuota)));
+                txtTotalPrestamo.setText("S/. " + String.valueOf(formateador.format(total)));
+                txtTotalCredito.setText("S/. " + String.valueOf(formateador.format(total)));
+
+            } else {
+                Mensaje.mostrarAdvertencia(this, "No se puede generar el cronograma: \n  " + "El monto (" + prestamo.getMonto() + ") deber ser como minimo 1000 \n"
+                        + "El Interes (" + prestamo.getInteres() + ") debe ser como minimo 10% \n"
+                        + "N° de Cuotas (" + prestamo.getNumeroCuotas() + ") deben como minimo 6");
+                txtMonto.requestFocusInWindow();
+            }
+
+        }
+    }//GEN-LAST:event_btnCronogramaActionPerformed
+
+    private void txtCuotasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCuotasKeyTyped
+        String patron_de_entrada = "0123456789";
+        if (txtCuotas.getText().length() == Prestamo.LONGITUD_CUOTA || !patron_de_entrada.contains(String.valueOf(evt.getKeyChar()))) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCuotasKeyTyped
+
+    private void txtMontoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoKeyTyped
+        String patron_de_entrada = "0123456789";
+        if (txtMonto.getText().length() == Prestamo.LONGITUD_MONTO
+                || !patron_de_entrada.contains(String.valueOf(evt.getKeyChar()))) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMontoKeyTyped
+
+    private void txtInteresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInteresKeyTyped
+        String patron_de_entrada = "0123456789.";
+        if (txtInteres.getText().length() == Prestamo.LONGITUD_INTERES || !patron_de_entrada.contains(String.valueOf(evt.getKeyChar()))) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtInteresKeyTyped
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+
+        String dni = txtDNI.getText();
+        if (txtDNI.getText().equals("")) {
+            Mensaje.mostrarAdvertencia(this, "Ingrese DNI del cliente");
+            txtDNI.requestFocusInWindow();
+        } else {
+            if (txtDNI.getText().length() != 8) {
+                Mensaje.mostrarError(this, "El N° " + dni + "\n  No es un N° de DNI valido");
+                limpiarTextos();
+                txtDNI.requestFocusInWindow();
+            } else {
+                try {
+                    GestionarClienteServicio gestionarClienteServicio = new GestionarClienteServicio();
+                    cliente = gestionarClienteServicio.buscarDNI(dni);
+                    if (cliente != null) {
+                        if (cliente.getAnalista().getIdanalista() != user.getUsuarioid()) {
+                            Mensaje.mostrarInformacion(this, "El cliente " + cliente.getNombre() + " no esta asignado a su cartera");
+                            limpiarTodo();
+                            this.desabilitar();
+                        } else {
+
+                            RegistrarPrestamoServicio registrarPrestamoServicio = new RegistrarPrestamoServicio();
+                            numero_prestamos = registrarPrestamoServicio.numeroDePrestamos(dni);
+                            if (numero_prestamos == 3) {
+                                Mensaje.mostrarAlertaExceso(this);
+                                limpiarTodo();
+                                txtDNI.requestFocusInWindow();
+                            } else {
+                                txtNombre.setText(cliente.getNombre());
+                                txtApellido.setText(cliente.getApellido());
+                                txtMonto.requestFocusInWindow();
+                                txtNPrestamos.setText(String.valueOf(numero_prestamos));
+                            }
+                        }
+                    } else {
+                        Mensaje.mostrarInformacion(this, "El cliente no se encuentra Registrado en el sistema");
+                        limpiarTextos();
+                        txtDNI.requestFocusInWindow();
+                    }
+
+                } catch (Exception e) {
+                    Mensaje.mostrarError(this, e.getMessage());
+                }
+            }
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
+        String patron_de_entrada = "0123456789";
+        if (txtDNI.getText().length() == Cliente.LONGITUD_DNI
+                || !patron_de_entrada.contains(String.valueOf(evt.getKeyChar()))) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDNIKeyTyped
+
+    private void txtDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyReleased
+
+    }//GEN-LAST:event_txtDNIKeyReleased
 
     /**
      * @param args the command line arguments
@@ -1054,15 +969,11 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnCancelar1;
     private javax.swing.JButton btnCronograma;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnGuardar1;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnNuevo;
-    private javax.swing.JButton btnNuevo1;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton btnSalir1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1084,9 +995,8 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable tablaCuotas;
     private javax.swing.JTextField txtAnalista;
     private javax.swing.JTextField txtApellido;

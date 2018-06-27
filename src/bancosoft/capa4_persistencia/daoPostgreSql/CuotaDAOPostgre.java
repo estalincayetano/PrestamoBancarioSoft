@@ -31,7 +31,7 @@ public class CuotaDAOPostgre implements ICuotaDAO {
                 + "from cliente as c "
                 + "join prestamo as p on c.idcliente = p.idcliente "
                 + "join cuota as cu on cu.idprestamo = p.idprestamo "
-                + "where cu.estado = '" + estado + "' and p.idprestamo= " + idprestamo + " ";
+                + "where cu.estado = '" + estado + "' and p.idprestamo= " + idprestamo + " order by idcuota";
         ResultSet resultado = gestorJDBC.ejecutarConsulta(sentenciaSQL);
         while (resultado.next()) {
             cuota = new Cuota();
@@ -77,7 +77,7 @@ public class CuotaDAOPostgre implements ICuotaDAO {
         List<Cuota> cuotas = new ArrayList<>();
         Cuota cuota;
         String sentenciaSQL = "select c.idcuota, c.montocuota, c.fechapago, c.estado from cuota as c "
-                + "where idprestamo= " + idprestamo;
+                + "where idprestamo= " + idprestamo+" order by idcuota";
         ResultSet resultado = gestorJDBC.ejecutarConsulta(sentenciaSQL);
         while (resultado.next()) {
             cuota = new Cuota();

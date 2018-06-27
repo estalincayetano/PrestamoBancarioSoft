@@ -82,7 +82,7 @@ public class PrestamoDAOPostgre implements IPrestamoDAO {
         List<Prestamo> prestamos = new ArrayList<>();
         Prestamo prestamo;
         String sentenciaSQL = "select idprestamo,monto, interes, numerocuotas, fechainicio, estado "
-                + " from prestamo where estado like '%" + estado + "%' and idanalista= " + idanalista;
+                + " from prestamo where estado like '%" + estado + "%' and idanalista= " + idanalista+" order by idprestamo";
         ResultSet resultado = gestorJDBC.ejecutarConsulta(sentenciaSQL);
         while (resultado.next()) {
             prestamo = new Prestamo();
@@ -105,7 +105,7 @@ public class PrestamoDAOPostgre implements IPrestamoDAO {
         String sentenciaSQL = "select p.idprestamo, p.numerocuotas, p.interes, p.fechainicio, P.monto "
                 + " from prestamo as p "
                 + "join cliente as c on p.idcliente=c.idcliente "
-                + "where dni='" + dni + "' and estado='VIGENTE' ";
+                + "where dni='" + dni + "' and estado='VIGENTE' order by idprestamo";
         ResultSet resultado = gestorJDBC.ejecutarConsulta(sentenciaSQL);
         while (resultado.next()) {
             prestamo = new Prestamo();

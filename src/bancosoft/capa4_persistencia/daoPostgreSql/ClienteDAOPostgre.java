@@ -1,6 +1,7 @@
 package bancosoft.capa4_persistencia.daoPostgreSql;
 
 import bancosoft.capa3_dominio.contactos.IClienteDAO;
+import bancosoft.capa3_dominio.entidades.Analista;
 import bancosoft.capa3_dominio.entidades.Cliente;
 import bancosoft.capa4_persistencia.GestorJDBC;
 import java.sql.PreparedStatement;
@@ -82,7 +83,7 @@ public class ClienteDAOPostgre implements IClienteDAO {
     @Override
     public Cliente buscarPorDNI(String dni) throws SQLException {
         Cliente cliente = null;
-        String sentenciaSQL = "SELECT idcliente, dni, nombre, apellidos, direccion, edad, celular "
+        String sentenciaSQL = "SELECT idcliente, dni, nombre, apellidos, direccion, edad, celular, idanalista "
                 + "FROM cliente where dni='" + dni + "'";
         ResultSet resultado = gestorJDBC.ejecutarConsulta(sentenciaSQL);
         if (resultado.next()) {
@@ -94,6 +95,10 @@ public class ClienteDAOPostgre implements IClienteDAO {
             cliente.setDireccion(resultado.getString("direccion"));
             cliente.setEdad(resultado.getInt("edad"));
             cliente.setCelular(resultado.getString("celular"));
+            int idanalista = resultado.getInt("idanalista");
+            Analista analista= new Analista();
+            analista.setIdanalista(idanalista);
+            cliente.setAnalista(analista);
 
         }
         resultado.close();

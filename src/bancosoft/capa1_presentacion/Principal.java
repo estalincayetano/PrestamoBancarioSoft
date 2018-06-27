@@ -7,7 +7,7 @@ package bancosoft.capa1_presentacion;
  */
 public class Principal {
       public static void main(String[] args) {
-        new FormMenu().setVisible(true);
+        new FormInciarSeccion(null, true).setVisible(true);
 //        new FormInciarSeccion().setVisible(true);
     }  
 }
