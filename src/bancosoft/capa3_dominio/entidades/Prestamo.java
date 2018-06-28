@@ -129,7 +129,7 @@ public class Prestamo {
     }
 
     public boolean validarInteres() {
-        if (interes >= 10 && interes < 20) {
+        if (interes >= 10 && interes <= 100) {
             return true;
         } else {
             return false;
@@ -137,7 +137,7 @@ public class Prestamo {
     }
 
     public boolean validarCuotas() {
-        if (numeroCuotas >= 6) {
+        if (numeroCuotas >= 6 && numeroCuotas <= 240) {
             return true;
         } else {
             return false;
@@ -151,7 +151,7 @@ public class Prestamo {
     }
     /*Metodo para calcular la taza de interes diaria de la cuota*/
 
-      public double calcularTazaDiaria() {
+    public double calcularTazaDiaria() {
         double inte = interes / 100d;
         double diasf = 1 / 360d;
         return (Math.pow((1 + inte), diasf) - 1) * 100;
@@ -172,7 +172,12 @@ public class Prestamo {
     /*Metodo para calcular el seguro de desgraven*/
 
     public double calcularDesgraven() {
-        return monto * ((0.00075) * (31 / 30d));
+        if (monto >= 1500) {
+            return monto * ((0.00075) * (31 / 30d));
+        } else {
+            return 0;
+        }
+
     }
 
 

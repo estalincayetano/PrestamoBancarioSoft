@@ -382,7 +382,7 @@
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Component id="txtInteres" min="-2" pref="57" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel7" min="-2" pref="64" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnCronograma" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -524,7 +524,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="12" style="3"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="%"/>
+                <Property name="text" type="java.lang.String" value="% Anual"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">

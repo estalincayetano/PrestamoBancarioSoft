@@ -355,7 +355,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        jLabel7.setText("%");
+        jLabel7.setText("% Anual");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel8.setText("Monto S/.");
@@ -525,7 +525,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
                         .addGap(10, 10, 10)
                         .addComponent(txtInteres, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCronograma))
                     .addGroup(jPanel3Layout.createSequentialGroup()
