@@ -2,6 +2,7 @@ package bancosoft.capa1_presentacion;
 
 import bancosoft.capa1_presentacion.util.ConfiguradorDeTabla;
 import bancosoft.capa1_presentacion.util.Mensaje;
+import bancosoft.capa1_presentacion.util.RoundCalculos;
 import bancosoft.capa2_aplicacion.GestionarClienteServicio;
 import bancosoft.capa2_aplicacion.RegistrarPagoServicio;
 import bancosoft.capa2_aplicacion.RegistrarPrestamoServicio;
@@ -109,6 +110,17 @@ public class FormGestionarPagos extends javax.swing.JDialog {
         btnSalir.setEnabled(true);
         btnPagar.setEnabled(false);
         txtDNI.setEnabled(false);
+    }
+
+    public void cancelarTransaccion() {
+        txtMonto.setText("");
+        txtMora.setText("");
+        txtTotal.setText("");
+        ModeloTabla modeloTabla = (ModeloTabla) tablaCuotas.getModel();
+        modeloTabla.eliminarTotalFilas();
+        String estado = "PENDIENTE";
+        buscarCuotas(selecciona_prestamoid, estado);
+        modeloTabla.refrescarDatos();
     }
 
     public void buscarPrestamos(String dni) {
@@ -653,10 +665,9 @@ public class FormGestionarPagos extends javax.swing.JDialog {
             cuota.setFechaPago(fecha_pago);
             pago = new Pago();
             pago.setCuota(cuota);
-            DecimalFormat formateador = new DecimalFormat("#0.0");
-            txtMonto.setText(String.valueOf(formateador.format(cuota.getMontoCuota())));
-            txtMora.setText(String.valueOf(formateador.format(pago.calcularMora())));
-            txtTotal.setText(String.valueOf(formateador.format(pago.pagoTotal())));
+            txtMonto.setText(String.valueOf(RoundCalculos.redondearDecimales(cuota.getMontoCuota(), 2)));
+            txtMora.setText(String.valueOf(RoundCalculos.redondearDecimales(pago.calcularMora(),2)));
+            txtTotal.setText(String.valueOf(RoundCalculos.redondearDecimales(pago.pagoTotal(), 2)));
         } else {
             Mensaje.mostrarError(this, "La cuota Seleccionada no puede ser Pagada \n Tiene cuotas Anteriores Pendientes");
             txtMonto.setText("");
@@ -691,14 +702,7 @@ public class FormGestionarPagos extends javax.swing.JDialog {
                                 this.desabilitar();
                             }
                         } else if (Mensaje.mostrarPreguntaDePermanencia(this)) {
-                            txtMonto.setText("");
-                            txtMora.setText("");
-                            txtTotal.setText("");
-                            ModeloTabla modeloTabla = (ModeloTabla) tablaCuotas.getModel();
-                            modeloTabla.eliminarTotalFilas();
-                            String estado = "PENDIENTE";
-                            buscarCuotas(selecciona_prestamoid, estado);
-                            modeloTabla.refrescarDatos();
+                            cancelarTransaccion();
                         } else {
                             this.desabilitar();
                             limpiarTodo();
@@ -707,14 +711,7 @@ public class FormGestionarPagos extends javax.swing.JDialog {
                         }
                     }
                 } else {
-                    txtMonto.setText("");
-                    txtMora.setText("");
-                    txtTotal.setText("");
-                    ModeloTabla modeloTabla = (ModeloTabla) tablaCuotas.getModel();
-                    modeloTabla.eliminarTotalFilas();
-                    String estado = "PENDIENTE";
-                    buscarCuotas(selecciona_prestamoid, estado);
-                    modeloTabla.refrescarDatos();
+                    cancelarTransaccion();
                 }
 
             } catch (Exception e) {

@@ -1,5 +1,6 @@
 package bancosoft.capa3_dominio.entidades;
 
+import bancosoft.capa1_presentacion.util.RoundCalculos;
 import java.sql.Date;
 
 /**
@@ -8,9 +9,9 @@ import java.sql.Date;
  */
 public class Pago {
 
+    private int idpago;
     private Cajero cajero;
     private Cuota cuota;
-    private int idpago;
     private Date fecha;
     private String estado;
 
@@ -59,8 +60,7 @@ public class Pago {
     }
 
     public Boolean ValidarFechaPago() {
-        int fech = fecha.compareTo(cuota.getFechaPago());
-        if (fech >= 1) {
+        if (fecha.compareTo(cuota.getFechaPago())>= 1) {
             return true;
         } else {
             return false;
@@ -74,12 +74,12 @@ public class Pago {
         } else {
             mora = 0;
         }
-        return mora;
+        return RoundCalculos.redondearDecimales(mora, 2);
     }
 
     public double pagoTotal() {
         double pago = 0.0;
         pago = cuota.getMontoCuota() + calcularMora();
-        return pago;
+        return RoundCalculos.redondearDecimales(pago, 2);
     }
 }

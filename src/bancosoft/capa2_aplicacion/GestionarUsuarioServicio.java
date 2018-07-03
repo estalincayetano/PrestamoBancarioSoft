@@ -46,7 +46,12 @@ public class GestionarUsuarioServicio {
         gestorJDBC.cerrarConexion();
         return usuario;
     }
-
+    public Usuario buscarUser(String user) throws Exception {
+        gestorJDBC.abrirConexion();
+        Usuario usuario = usuarioDAO.buscarUser(user);
+        gestorJDBC.cerrarConexion();
+        return usuario;
+    }
     public Usuario buscaIngresoSistema(String user, String contrasenia) throws Exception {
         gestorJDBC.abrirConexion();
         Usuario usuario = usuarioDAO.ingresoSistema(user, contrasenia);

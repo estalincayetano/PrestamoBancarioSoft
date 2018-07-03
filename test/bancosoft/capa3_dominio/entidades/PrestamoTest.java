@@ -5,7 +5,8 @@
  */
 package bancosoft.capa3_dominio.entidades;
 
-import java.util.Date;
+import java.sql.Date;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -22,30 +23,30 @@ public class PrestamoTest {
     public PrestamoTest() {
     }
     
-   /**
+  
+    /**
      * Test of calcularTazaDiaria method, of class Prestamo.
      */
-    @Test
+  @Test
     public void testCalcularTazaDiaria() {
         System.out.println("calcularTazaDiaria");
         Prestamo instance = new Prestamo();
-        instance.setInteres(10);
-        double expResult = 0.026478555537545745;
+        instance.setInteres(11.99);
+        double expResult = 0.0315;
         double result = instance.calcularTazaDiaria();
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
-
     }
 
     /**
      * Test of calcularTazaMensual method, of class Prestamo.
      */
-    @Test
+ @Test
     public void testCalcularTazaMensual() {
         System.out.println("calcularTazaMensual");
         Prestamo instance = new Prestamo();
-        instance.setInteres(10);
-        double expResult =0.7974140622760251 ;
+        instance.setInteres(11.99);
+        double expResult = 0.9493;
         double result = instance.calcularTazaMensual();
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
@@ -54,32 +55,40 @@ public class PrestamoTest {
     /**
      * Test of calcularInteresMensual method, of class Prestamo.
      */
-    @Test
+ @Test
     public void testCalcularInteresMensual() {
         System.out.println("calcularInteresMensual");
         Prestamo instance = new Prestamo();
-        instance.setMonto(1000);
-        instance.setInteres(10);
-        double expResult = 17.974140622760252;
+        instance.setMonto(30000);
+        instance.setInteres(11.99);
+        double expResult = 294.79;
         double result = instance.calcularInteresMensual();
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
-
     }
 
     /**
      * Test of calcularDesgraven method, of class Prestamo.
      */
-    @Test
+  @Test
     public void testCalcularDesgraven() {
         System.out.println("calcularDesgraven");
         Prestamo instance = new Prestamo();
-        instance.setMonto(20000);
-        double expResult = 15;
+        instance.setMonto(3000);
+        double expResult = 2.25;
         double result = instance.calcularDesgraven();
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
-
+    }
+ @Test
+    public void testCalcularDesgraven1() {
+        System.out.println("calcularDesgraven");
+        Prestamo instance = new Prestamo();
+        instance.setMonto(1499);
+        double expResult = 0.0;
+        double result = instance.calcularDesgraven();
+        assertEquals(expResult, result, 0.0);
+        // TODO review the generated test code and remove the default call to fail.
     }
 
     /**
@@ -89,30 +98,28 @@ public class PrestamoTest {
     public void testCalcularCapital() {
         System.out.println("calcularCapital");
         Prestamo instance = new Prestamo();
-        instance.setMonto(20000);
-        instance.setNumeroCuotas(24);
-        double expResult = 833.33333333333334;
+        instance.setMonto(30000);
+        instance.setNumeroCuotas(12);
+        double expResult = 2500;
         double result = instance.calcularCapital();
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
-
     }
 
     /**
      * Test of calcularImporteCuotaReferencial method, of class Prestamo.
      */
-    @Test
+ @Test
     public void testCalcularImporteCuotaReferencial() {
         System.out.println("calcularImporteCuotaReferencial");
         Prestamo instance = new Prestamo();
-        instance.setMonto(1000);
-        instance.setInteres(10);
-        instance.setNumeroCuotas(12);
-        double expResult = 101.30747395609359;
+        instance.setMonto(30000);
+        instance.setInteres(11.99);
+        instance.setNumeroCuotas(24);
+        double expResult = 1544.79;
         double result = instance.calcularImporteCuotaReferencial();
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
-
     }
 
     /**
@@ -122,18 +129,13 @@ public class PrestamoTest {
     public void testCalcularImporteDeCuota() {
         System.out.println("calcularImporteDeCuota");
         Prestamo instance = new Prestamo();
-        instance.setMonto(1000);
-        instance.setNumeroCuotas(12);
-        instance.setInteres(10);
-        double expResult = 102.05747395609359;
+        instance.setMonto(30000);
+        instance.setNumeroCuotas(24);
+        instance.setInteres(11.99);
+        double expResult = 1567.29;
         double result = instance.calcularImporteDeCuota();
         assertEquals(expResult, result, 0.0);
         // TODO review the generated test code and remove the default call to fail.
-     
     }
-
-    /**
-     * Test of getFechaInicio method, of class Prestamo.
-     */
-
+    
 }

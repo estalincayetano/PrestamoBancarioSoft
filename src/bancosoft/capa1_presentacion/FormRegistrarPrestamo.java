@@ -8,6 +8,7 @@ package bancosoft.capa1_presentacion;
 import bancosoft.capa1_presentacion.util.ConfiguradorDeTabla;
 import bancosoft.capa1_presentacion.util.HelpersFecha;
 import bancosoft.capa1_presentacion.util.Mensaje;
+import bancosoft.capa1_presentacion.util.RoundCalculos;
 import bancosoft.capa2_aplicacion.GestionarClienteServicio;
 import bancosoft.capa2_aplicacion.RegistrarPrestamoServicio;
 import bancosoft.capa3_dominio.entidades.Analista;
@@ -34,7 +35,8 @@ import mastersoft.tabladatos.Tabla;
 public class FormRegistrarPrestamo extends javax.swing.JDialog {
 
     Usuario user = FormInciarSeccion.usuario;
-    Date fecha;
+    Date fecha_actual;
+    Date fecha_fin;
     Cliente cliente;
     Prestamo prestamo;
     int numero_prestamos;
@@ -45,9 +47,58 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         setLocationRelativeTo(this);
         MostrarCuotasTabla();
         this.desabilitar();
-        fecha = java.sql.Date.valueOf(String.format("%1$tY-%1$tm-%1$te", new java.util.Date()));;
-        txtFecha.setText("" + fecha);
+        fecha_actual = java.sql.Date.valueOf(String.format("%1$tY-%1$tm-%1$te", new java.util.Date()));;
+        txtFecha.setText("" + fecha_actual);
         txtAnalista.setText(user.getNombre().toUpperCase());
+    }
+
+    public void MostrarCuotasTabla() {
+        Tabla tabla = new Tabla();
+        tabla.agregarColumna(new Columna("N°", "java.lang.Integer"));
+        tabla.agregarColumna(new Columna("Fecha Pago", "java.lang.String"));
+        tabla.agregarColumna(new Columna("capital", "java.lang.Double"));
+        tabla.agregarColumna(new Columna("Interés", "java.lang.Double"));
+        tabla.agregarColumna(new Columna("Cuota", "java.lang.Double"));
+        tabla.agregarColumna(new Columna("Seguro", "java.lang.Double"));
+        tabla.agregarColumna(new Columna("Total", "java.lang.Double"));
+        ModeloTabla modeloTabla = new ModeloTabla(tabla);
+        tablaCuotas.setModel(modeloTabla);
+        ConfiguradorDeTabla.configurarAnchoColumna(tablaCuotas, 0, 40, 50, 40);
+
+        txtDNI.requestFocus();
+    }
+
+    public void limpiarTextosDeEntrada() {
+        txtDNI.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtMonto.setText("");
+        txtInteres.setText("");
+        txtNPrestamos.setText("");
+    }
+
+    public void limpiarTextosDeSalida() {
+        txtCuotas.setText("");
+        txtInteresMensual.setText("");
+        txtValorCuota.setText("");
+        txtCapital.setText("");
+        txtInteresTotal.setText("");
+        txtTotalCredito.setText("");
+        txtTotalPrestamo.setText("");
+        txtNota.setText("");
+        txtCuotaImporte.setText("");
+        txtSeguro.setText("");
+    }
+
+    public void limpiarTabla() {
+        ModeloTabla modeloTabla = (ModeloTabla) tablaCuotas.getModel();
+        modeloTabla.eliminarTotalFilas();
+    }
+
+    public void limpiarTodo() {
+        limpiarTextosDeEntrada();
+        limpiarTextosDeSalida();
+        limpiarTabla();
     }
 
     public void habilitar() {
@@ -78,51 +129,6 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         txtCuotas.setEnabled(false);
         txtInteres.setEnabled(false);
         txtNota.setEnabled(false);
-    }
-
-    public void MostrarCuotasTabla() {
-        Tabla tabla = new Tabla();
-        tabla.agregarColumna(new Columna("N°", "java.lang.Integer"));
-        tabla.agregarColumna(new Columna("Fecha Pago", "java.lang.String"));
-        tabla.agregarColumna(new Columna("capital", "java.lang.Double"));
-        tabla.agregarColumna(new Columna("Interés", "java.lang.Double"));
-        tabla.agregarColumna(new Columna("Cuota", "java.lang.Double"));
-        tabla.agregarColumna(new Columna("Seguro", "java.lang.Double"));
-        tabla.agregarColumna(new Columna("Total", "java.lang.Double"));
-        ModeloTabla modeloTabla = new ModeloTabla(tabla);
-        tablaCuotas.setModel(modeloTabla);
-        ConfiguradorDeTabla.configurarAnchoColumna(tablaCuotas, 0, 40, 50, 40);
-        ConfiguradorDeTabla.configurarAnchoColumna(tablaCuotas, 1, 140, 150, 140);
-        ConfiguradorDeTabla.configurarAnchoColumna(tablaCuotas, 2, 120, 130, 120);
-        ConfiguradorDeTabla.configurarAnchoColumna(tablaCuotas, 3, 110, 120, 110);
-        ConfiguradorDeTabla.configurarAnchoColumna(tablaCuotas, 4, 125, 130, 125);
-        ConfiguradorDeTabla.configurarAnchoColumna(tablaCuotas, 5, 110, 120, 110);
-        ConfiguradorDeTabla.configurarAnchoColumna(tablaCuotas, 6, 130, 140, 130);
-        txtDNI.requestFocus();
-    }
-
-    public void limpiarTextos() {
-        txtDNI.setText("");
-        txtNombre.setText("");
-        txtApellido.setText("");
-        txtMonto.setText("");
-        txtInteres.setText("");
-
-    }
-
-    public void limpiarTodo() {
-        limpiarTextos();
-        txtCuotas.setText("");
-        txtValorCuota.setText("");
-        txtCapital.setText("");
-        txtInteresTotal.setText("");
-        txtTotalCredito.setText("");
-        txtTotalPrestamo.setText("");
-        txtNota.setText("");
-        txtCuotaImporte.setText("");
-        txtSeguro.setText("");
-        ModeloTabla modeloTabla = (ModeloTabla) tablaCuotas.getModel();
-        modeloTabla.eliminarTotalFilas();
     }
 
     public void refrescarDatosTabla(JTable tabla) {
@@ -181,6 +187,9 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         txtNota = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         btnImprimir = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        txtInteresMensual = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
@@ -453,21 +462,26 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         txtSeguro.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtSeguro.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtSeguro.setEnabled(false);
+        txtSeguro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSeguroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
-                .addComponent(txtCapital, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(txtInteresTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addGap(6, 6, 6)
+                .addComponent(txtCapital, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtInteresTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCuotaImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(txtSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSeguro, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel14)
                 .addGap(18, 18, 18)
                 .addComponent(txtTotalPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -505,31 +519,48 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bancosoft/capa1_presentacion/imagenes/print.png"))); // NOI18N
         btnImprimir.setText("Imprimir");
 
+        jLabel17.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel17.setText("Taza de Interes");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel18.setText("% Mensual");
+
+        txtInteresMensual.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtInteresMensual.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtInteresMensual.setEnabled(false);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(jLabel8)
+                .addGap(16, 16, 16)
+                .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtInteres, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtInteresMensual, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel8)
-                        .addGap(16, 16, 16)
-                        .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel6)
-                        .addGap(10, 10, 10)
-                        .addComponent(txtInteres, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCronograma))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(667, 667, 667)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtValorCuota, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -537,7 +568,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
                 .addContainerGap())
             .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 74, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -584,7 +615,10 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtValorCuota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel18)
+                    .addComponent(txtInteresMensual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -754,14 +788,20 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
             prestamo.setAnalista(analista);
             prestamo.setNota(txtNota.getText());
             try {
-                RegistrarPrestamoServicio gestionarPrestamoServicio = new RegistrarPrestamoServicio();
-                int registros_afectados = gestionarPrestamoServicio.crearPrestamo(prestamo);
-                if (registros_afectados == 1) {
-                    Mensaje.mostrarAfirmacionDeCreacion(this);
+                if (Mensaje.mostrarPreguntaDeConfirmacion(this)) {
+                    RegistrarPrestamoServicio gestionarPrestamoServicio = new RegistrarPrestamoServicio();
+                    int registros_afectados = gestionarPrestamoServicio.crearPrestamo(prestamo);
+                    if (registros_afectados == 1) {
+                        Mensaje.mostrarAfirmacionDeCreacion(this);
+                        limpiarTodo();
+                        this.desabilitar();
+                    } else {
+                        Mensaje.mostrarErrorDeCreacion(this);
+                    }
+
+                } else {
                     limpiarTodo();
                     this.desabilitar();
-                } else {
-                    Mensaje.mostrarErrorDeCreacion(this);
                 }
             } catch (Exception e) {
                 Mensaje.mostrarError(this, e.getMessage());
@@ -792,47 +832,59 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
             prestamo.setMonto(Double.parseDouble(txtMonto.getText()));
             prestamo.setInteres(Double.parseDouble(txtInteres.getText()));
             prestamo.setNumeroCuotas(Integer.parseInt(txtCuotas.getText()));
-            if (prestamo.validarMonto()==true && prestamo.validarInteres()==true && prestamo.validarCuotas()==true) {
-                ModeloTabla modeloTabla = (ModeloTabla) tablaCuotas.getModel();
-                modeloTabla.eliminarTotalFilas();
-                for (int i = 1; i <= prestamo.getNumeroCuotas(); i++) {
-                    Cuota cuota = new Cuota();
-                    cuota.setCapital_cuota(prestamo.calcularCapital());
-                    cuota.setInteres_cuota(prestamo.calcularInteresMensual());
-                    cuota.setSeguro(prestamo.calcularDesgraven());
-                    fecha_next = HelpersFecha.addDay(fecha, i * 31);
-                    cuota.setFechaPago(fecha_next);
-                    cuota.setMontoCuota(prestamo.calcularImporteDeCuota());
-                    prestamo.agregarCuota(cuota);
-                    Fila fila = new Fila();
-                    fila.agregarValorCelda(i);
-                    fila.agregarValorCelda(String.format("%1$tY-%1$tm-%1$te", cuota.getFechaPago()));
-                    fila.agregarValorCelda(cuota.getCapital_cuota());
-                    fila.agregarValorCelda(cuota.getInteres_cuota());
-                    fila.agregarValorCelda(prestamo.calcularImporteCuotaReferencial());
-                    fila.agregarValorCelda(cuota.getSeguro());
-                    fila.agregarValorCelda(cuota.getMontoCuota());
-                    total_capital = total_capital + prestamo.calcularCapital();
-                    total_interes = total_interes + prestamo.calcularInteresMensual();
-                    total_cuota = total_cuota + prestamo.calcularImporteCuotaReferencial();
-                    total_seguro = total_seguro + prestamo.calcularDesgraven();
-                    total = total + prestamo.calcularImporteDeCuota();
-                    modeloTabla.agregarFila(fila);
+            fecha_fin=HelpersFecha.addDay(fecha_actual, prestamo.getNumeroCuotas()*31);
+            prestamo.setFechafin(HelpersFecha.convertDate(fecha_fin));
+            if (prestamo.validarMonto() == true) {
+                if (prestamo.validarCuotas() == true) {
+                    if (prestamo.validarInteres() == true) {
+                        ModeloTabla modeloTabla = (ModeloTabla) tablaCuotas.getModel();
+                        modeloTabla.eliminarTotalFilas();
+                        for (int i = 1; i <= prestamo.getNumeroCuotas(); i++) {
+                            Cuota cuota = new Cuota();
+                            cuota.setCapital_cuota(prestamo.calcularCapital());
+                            cuota.setInteres_cuota(prestamo.calcularInteresMensual());
+                            cuota.setSeguro(prestamo.calcularDesgraven());
+                            fecha_next = HelpersFecha.addDay(fecha_actual, i * 31);
+                            cuota.setFechaPago(fecha_next);
+                            cuota.setMontoCuota(prestamo.calcularImporteDeCuota());
+                            prestamo.agregarCuota(cuota);
+                            Fila fila = new Fila();
+                            fila.agregarValorCelda(i);
+                            fila.agregarValorCelda(String.format("%1$tY-%1$tm-%1$te", cuota.getFechaPago()));
+                            fila.agregarValorCelda(cuota.getCapital_cuota());
+                            fila.agregarValorCelda(cuota.getInteres_cuota());
+                            fila.agregarValorCelda(prestamo.calcularImporteCuotaReferencial());
+                            fila.agregarValorCelda(cuota.getSeguro());
+                            fila.agregarValorCelda(cuota.getMontoCuota());
+                            total_capital = total_capital + prestamo.calcularCapital();
+                            total_interes = total_interes + prestamo.calcularInteresMensual();
+                            total_cuota = total_cuota + prestamo.calcularImporteCuotaReferencial();
+                            total_seguro = total_seguro + prestamo.calcularDesgraven();
+                            total = total + prestamo.calcularImporteDeCuota();
+                            modeloTabla.agregarFila(fila);
+                        }
+                        modeloTabla.refrescarDatos();
+                        txtInteresMensual.setText(String.valueOf(prestamo.calcularTazaMensual()));
+                        txtValorCuota.setText("S/. " + String.valueOf(prestamo.calcularImporteDeCuota()));
+                        txtCapital.setText("S/. " + String.valueOf(RoundCalculos.redondearDecimales(total_capital,2)));
+                        txtInteresTotal.setText("S/. " + String.valueOf(RoundCalculos.redondearDecimales(total_interes,2)));
+                        txtSeguro.setText("S/. " + String.valueOf(RoundCalculos.redondearDecimales(total_seguro,2)));
+                        txtCuotaImporte.setText("S/. " + String.valueOf(RoundCalculos.redondearDecimales(total_cuota,2)));
+                        txtTotalPrestamo.setText("S/. " + String.valueOf(RoundCalculos.redondearDecimales(total,2)));
+                        txtTotalCredito.setText("S/. " + String.valueOf(RoundCalculos.redondearDecimales(total,2)));
+                    } else {
+                        limpiarTabla();
+                        Mensaje.mostrarAdvertencia(this, "el interes " + prestamo.getInteres() + " Debe ser mayor a 10% y menor o igual a 100%");
+                        txtInteres.requestFocusInWindow();
+                    }
+                } else {
+                    limpiarTabla();
+                    Mensaje.mostrarAdvertencia(this, "El numero de cuotas: " + prestamo.getNumeroCuotas() + " deben ser mayor o igual a 6");
+                    txtCuotas.requestFocusInWindow();
                 }
-                modeloTabla.refrescarDatos();
-                DecimalFormat formateador = new DecimalFormat("#0.00");
-                txtValorCuota.setText("S/. " + String.valueOf(formateador.format(prestamo.calcularImporteDeCuota())));
-                txtCapital.setText("S/. " + String.valueOf(formateador.format(total_capital)));
-                txtInteresTotal.setText("S/. " + String.valueOf(formateador.format(total_interes)));
-                txtSeguro.setText("S/. " + String.valueOf(formateador.format(total_seguro)));
-                txtCuotaImporte.setText("S/. " + String.valueOf(formateador.format(total_cuota)));
-                txtTotalPrestamo.setText("S/. " + String.valueOf(formateador.format(total)));
-                txtTotalCredito.setText("S/. " + String.valueOf(formateador.format(total)));
-
             } else {
-                Mensaje.mostrarAdvertencia(this, "No se puede generar el cronograma: \n  " + "El monto (" + prestamo.getMonto() + ") deber ser como minimo 1000 \n"
-                        + "El Interes (" + prestamo.getInteres() + ") debe ser como minimo 10% \n"
-                        + "N° de Cuotas (" + prestamo.getNumeroCuotas() + ") deben como minimo 6");
+                limpiarTabla();
+                Mensaje.mostrarAdvertencia(this, "El monto " + prestamo.getMonto() + " debe ser mayor o igual a 1000");
                 txtMonto.requestFocusInWindow();
             }
 
@@ -870,7 +922,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
         } else {
             if (txtDNI.getText().length() != 8) {
                 Mensaje.mostrarError(this, "El N° " + dni + "\n  No es un N° de DNI valido");
-                limpiarTextos();
+                limpiarTextosDeEntrada();
                 txtDNI.requestFocusInWindow();
             } else {
                 try {
@@ -898,7 +950,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
                         }
                     } else {
                         Mensaje.mostrarInformacion(this, "El cliente no se encuentra Registrado en el sistema");
-                        limpiarTextos();
+                        limpiarTextosDeEntrada();
                         txtDNI.requestFocusInWindow();
                     }
 
@@ -920,6 +972,10 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
     private void txtDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyReleased
 
     }//GEN-LAST:event_txtDNIKeyReleased
+
+    private void txtSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSeguroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSeguroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -982,6 +1038,8 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1006,6 +1064,7 @@ public class FormRegistrarPrestamo extends javax.swing.JDialog {
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtInteres;
+    private javax.swing.JTextField txtInteresMensual;
     private javax.swing.JTextField txtInteresTotal;
     private javax.swing.JTextField txtMonto;
     private javax.swing.JTextField txtNPrestamos;

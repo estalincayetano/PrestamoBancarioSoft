@@ -240,7 +240,7 @@ public class FormGestionarUsuarios extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         Usuario usuario = new Usuario();
-        if (txtDNI.getText().equals("") || txtNombre.getText().equals("")||txtUser.getText().equals("") || txtPasword.getPassword().equals("")) {
+        if (txtDNI.getText().equals("") || txtNombre.getText().equals("") || txtUser.getText().equals("") || txtPasword.getPassword().equals("")) {
             Mensaje.mostrarErrorDeCreacion(this);
         } else if (txtDNI.getText().length() != 8) {
             Mensaje.mostrarError(this, "El N° " + txtDNI.getText() + " No es un N° de DNI Valido");
@@ -268,11 +268,18 @@ public class FormGestionarUsuarios extends javax.swing.JDialog {
                     limpiar();
                     txtDNI.requestFocusInWindow();
                 } else {
-                    int registros_afectados = gestionarUsuarioServicio.crearUsuario(usuario);
-                    if (registros_afectados == 1) {
-                        Mensaje.mostrarAfirmacionDeCreacion(this);
-                        limpiar();
-                        txtDNI.requestFocusInWindow();
+                    Usuario user = gestionarUsuarioServicio.buscarUser(txtUser.getText());
+                    if (user != null) {
+                        Mensaje.mostrarError(this, "El usuario "+txtUser.getText()+" ya esta en uso, ingrese un nuevo usuario");
+                        txtUser.requestFocusInWindow();
+                    } else {
+
+                        int registros_afectados = gestionarUsuarioServicio.crearUsuario(usuario);
+                        if (registros_afectados == 1) {
+                            Mensaje.mostrarAfirmacionDeCreacion(this);
+                            limpiar();
+                            txtDNI.requestFocusInWindow();
+                        }
                     }
                 }
 

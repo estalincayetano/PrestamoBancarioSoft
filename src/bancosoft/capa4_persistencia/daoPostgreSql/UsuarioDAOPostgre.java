@@ -133,7 +133,7 @@ public class UsuarioDAOPostgre implements IUsuarioDAO {
         }
         return usuario;
     }
-
+   
     @Override
     public Usuario ingresoSistema(String user, String contrasenia) throws SQLException {
         Usuario usuario = null;
@@ -148,6 +148,23 @@ public class UsuarioDAOPostgre implements IUsuarioDAO {
             usuario.setNombre(resultado.getString("nombres"));
             usuario.setTipo(resultado.getString("tipo"));
             usuario.setDni(resultado.getString("dni"));
+        }
+        return usuario;
+    }
+
+    @Override
+    public Usuario buscarUser(String user) throws SQLException {
+              Usuario usuario = null;
+        String sentenciaSQL = "select idusuario, nombres, usuario, password, tipo from usuario "
+                + " where usuario = '" + user + "'";
+        ResultSet resultado = gestorJDBC.ejecutarConsulta(sentenciaSQL);
+        if (resultado.next()) {
+            usuario = new Usuario();
+            usuario.setNombre(resultado.getString("nombres"));
+            usuario.setUser(resultado.getString("usuario"));
+            usuario.setPassword(resultado.getString("password"));
+            usuario.setTipo(resultado.getString("tipo"));
+            usuario.setUsuarioid(resultado.getInt("idusuario"));
         }
         return usuario;
     }

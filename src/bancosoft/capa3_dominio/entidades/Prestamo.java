@@ -1,5 +1,7 @@
 package bancosoft.capa3_dominio.entidades;
 
+import bancosoft.capa1_presentacion.util.HelpersFecha;
+import bancosoft.capa1_presentacion.util.RoundCalculos;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.sql.Date;
@@ -19,6 +21,7 @@ public class Prestamo {
     private double interes;
     private int numeroCuotas;
     private Date fechaInicio;
+    private Date fechafin;
     private String estado;
     private String nota;
     private List<Cuota> listCuotas;
@@ -106,6 +109,14 @@ public class Prestamo {
         return fechaInicio;
     }
 
+    public Date getFechafin() {
+        return fechafin;
+    }
+
+    public void setFechafin(Date fechafin) {
+        this.fechafin = fechafin;
+    }
+
     public String getNota() {
         return nota;
     }
@@ -154,47 +165,53 @@ public class Prestamo {
     public double calcularTazaDiaria() {
         double inte = interes / 100d;
         double diasf = 1 / 360d;
-        return (Math.pow((1 + inte), diasf) - 1) * 100;
-
+        double taza_diaria = (Math.pow((1 + inte), diasf) - 1) * 100;
+        return RoundCalculos.redondearDecimales(taza_diaria, 4);
     }
     /*Metodo para calcular la taza de interes mensuales que se aplicara a cada cuota*/
 
     public double calcularTazaMensual() {
-        return (Math.pow((1 + (calcularTazaDiaria() / 100d)), 31) - 1) * 100;
+        double taza = (Math.pow((1 + (calcularTazaDiaria() / 100d)), 30) - 1) * 100;
+        return RoundCalculos.redondearDecimales(taza, 4);
     }
     /*Metodo para calcular el interes mensual de la cuota del prestamo*/
 
     public double calcularInteresMensual() {
-        double interesCuota = 0.0;
-        interesCuota = monto * ((calcularTazaMensual() / 100)) + 10;
-        return interesCuota;
+        double interesCuota = (monto * (calcularTazaMensual() / 100)) + 10;
+        return RoundCalculos.redondearDecimales(interesCuota, 2);
     }
     /*Metodo para calcular el seguro de desgraven*/
 
     public double calcularDesgraven() {
+        double seguro;
+        double seguroTotal;
         if (monto >= 1500) {
-            return monto * ((0.00075) * (31 / 30d));
+            seguro = monto * ((0.00075) * (30 / 30d));
         } else {
-            return 0;
+            seguro = 0;
         }
-
+        seguroTotal = RoundCalculos.redondearDecimales(seguro, 2);
+        return seguroTotal;
     }
 
 
     /*Metodo para calcular el Capital del importe de la cuota mensual en este 
      caso la regla de negocio dice cuota fija*/
     public double calcularCapital() {
-        return monto / numeroCuotas;
+        double capital = monto / numeroCuotas;
+        return RoundCalculos.redondearDecimales(capital, 2);
     }
     /*Metodo para calcular el importe Referencial mensual de cada cuota*/
 
     public double calcularImporteCuotaReferencial() {
-        return calcularCapital() + calcularInteresMensual();
+        double importe_referencial = calcularCapital() + calcularInteresMensual();
+        return RoundCalculos.redondearDecimales(importe_referencial, 2);
     }
     /*Metodo para calcular el importe Neto de cada cuota Mensual*/
 
     public double calcularImporteDeCuota() {
-        return calcularImporteCuotaReferencial() + calcularDesgraven();
+        double importe_total = calcularImporteCuotaReferencial() + calcularDesgraven();
+        return RoundCalculos.redondearDecimales(importe_total, 2);
     }
 
 }
