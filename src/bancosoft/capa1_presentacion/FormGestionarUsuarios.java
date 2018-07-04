@@ -26,6 +26,7 @@ public class FormGestionarUsuarios extends javax.swing.JDialog {
     public void limpiar() {
         txtDNI.setText("");
         txtNombre.setText("");
+        txtUser.setText("");
         txtPasword.setText("");
         txtConfirmar.setText("");
         cboTipo.setSelectedIndex(0);

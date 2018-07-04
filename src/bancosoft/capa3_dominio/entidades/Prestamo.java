@@ -1,12 +1,9 @@
 package bancosoft.capa3_dominio.entidades;
 
-import bancosoft.capa1_presentacion.util.HelpersFecha;
 import bancosoft.capa1_presentacion.util.RoundCalculos;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
-import java.text.DecimalFormat;
 
 /**
  *
@@ -127,8 +124,7 @@ public class Prestamo {
 
 
     /*Implementacion de metodos para calcular el capital de la cuota, el interes de la cuota,
-     el importe de cuota, el seguro de desgraven  
-    
+     el importe de cuota, el seguro de desgraven    
      */
     /*Metodo para validar datos de entrada*/
     public boolean validarMonto() {

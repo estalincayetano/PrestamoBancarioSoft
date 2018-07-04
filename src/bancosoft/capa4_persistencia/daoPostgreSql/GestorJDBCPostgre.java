@@ -9,7 +9,7 @@ public class GestorJDBCPostgre extends GestorJDBC {
     public void abrirConexion() throws Exception{        
         Class.forName("org.postgresql.Driver");
             String url = "jdbc:postgresql://localhost:5432/SistemaBancarioBD";
-        conexion = DriverManager.getConnection(url,"postgres", "4ifgde4a");   
+        conexion = DriverManager.getConnection(url,"postgres", "12345678");   
     }
     
 }
